@@ -75,4 +75,3 @@ If you prefer running it hosted on a local port:
 
 ---
 
-*Made with 💻 for the Google Deepmind Team / Antigravity Coding.*
