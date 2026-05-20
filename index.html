@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Master REST APIs in Spring Boot with this modern, interactive visual guide. Learn @RestController, @GetMapping, @PostMapping, and more through animated flow simulators.">
+  <title>Interactive Guide: REST API in Spring Boot | Spring API Academy</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Decorative Neon Glow -->
+  <div class="neon-glow-bg"></div>
+
+  <!-- Main Container -->
+  <div class="app-container">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo-icon">
+          <i class="fa-solid fa-leaf"></i>
+        </div>
+        <div class="brand-text">
+          <h2>Spring API</h2>
+          <span>Academy</span>
+        </div>
+      </div>
+
+      <div class="progress-container">
+        <div class="progress-text">
+          <span>Overall Progress</span>
+          <span id="progress-percentage">12%</span>
+        </div>
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" id="progress-bar"></div>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <ul>
+          <li class="active" data-slide="0">
+            <a href="javascript:void(0)">
+              <span class="slide-num">01</span>
+              <span class="slide-name"><i class="fa-solid fa-circle-question"></i> What is a REST API?</span>
+            </a>
+          </li>
+          <li data-slide="1">
+            <a href="javascript:void(0)">
+              <span class="slide-num">02</span>
+              <span class="slide-name"><i class="fa-solid fa-network-wired"></i> Why APIs are Needed</span>
+            </a>
+          </li>
+          <li data-slide="2">
+            <a href="javascript:void(0)">
+              <span class="slide-num">03</span>
+              <span class="slide-name"><i class="fa-solid fa-server"></i> @RestController</span>
+            </a>
+          </li>
+          <li data-slide="3">
+            <a href="javascript:void(0)">
+              <span class="slide-num">04</span>
+              <span class="slide-name"><i class="fa-solid fa-arrows-left-right"></i> GET & POST Methods</span>
+            </a>
+          </li>
+          <li data-slide="4">
+            <a href="javascript:void(0)">
+              <span class="slide-num">05</span>
+              <span class="slide-name"><i class="fa-solid fa-link"></i> @PathVariable</span>
+            </a>
+          </li>
+          <li data-slide="5">
+            <a href="javascript:void(0)">
+              <span class="slide-num">06</span>
+              <span class="slide-name"><i class="fa-solid fa-code"></i> JSON Response Format</span>
+            </a>
+          </li>
+          <li data-slide="6">
+            <a href="javascript:void(0)">
+              <span class="slide-num">07</span>
+              <span class="slide-name"><i class="fa-solid fa-gamepad"></i> Live API Simulator</span>
+            </a>
+          </li>
+          <li data-slide="7">
+            <a href="javascript:void(0)">
+              <span class="slide-num">08</span>
+              <span class="slide-name"><i class="fa-solid fa-graduation-cap"></i> Interview Q&A Prep</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <p>Interactive Teaching Presentation</p>
+        <span class="keyboard-hint"><kbd>←</kbd> <kbd>→</kbd> keys to navigate</span>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      
+      <!-- Top Header / Controls -->
+      <header class="main-header">
+        <div class="header-title">
+          <span class="badge">Spring Boot Course</span>
+          <h1 id="current-slide-title">What is a REST API?</h1>
+        </div>
+        <div class="header-controls">
+          <button id="theme-toggle-btn" class="ctrl-btn" title="Toggle Aesthetic Theme">
+            <i class="fa-solid fa-circle-half-stroke"></i>
+          </button>
+          <a href="#simulator" class="cta-nav-btn" onclick="goToSlide(6)">
+            <i class="fa-solid fa-circle-play"></i> Run Live Simulator
+          </a>
+        </div>
+      </header>
+
+      <!-- Slides Wrapper -->
+      <div class="slides-viewport">
+        
+        <!-- SLIDE 1: What is a REST API -->
+        <section class="slide-card active" id="slide-0">
+          <div class="slide-grid">
+            <div class="info-pane">
+              <h2 class="slide-heading"><span class="highlight">REST API</span> explained simply</h2>
+              <p class="intro-p">
+                Imagine going to a restaurant. You are the customer, and the kitchen prepares your food. However, you can't go straight to the kitchen to grab your meal. 
+              </p>
+              
+              <div class="metaphor-box">
+                <div class="metaphor-icon"><i class="fa-solid fa-utensils"></i></div>
+                <div class="metaphor-text">
+                  <strong>The Restaurant Metaphor:</strong><br>
+                  You (the <strong>Client</strong>) place an order (the <strong>Request</strong>) through the Waiter (the <strong>API</strong>). The waiter takes your request to the Kitchen (the <strong>Server</strong>), and brings the food (the <strong>Response</strong>) right back to your table.
+                </div>
+              </div>
+
+              <p class="explanation-p">
+                In software, a <strong>REST API</strong> is that digital waiter. It allows two independent applications (like an Instagram Mobile App and an Instagram Database Server) to talk to each other securely over the web using standard operations.
+              </p>
+            </div>
+            
+            <div class="diagram-pane">
+              <h3 class="pane-subtitle"><i class="fa-solid fa-diagram-project"></i> Client-Server Flow Diagram</h3>
+              
+              <div class="flow-diagram-container">
+                <!-- Client Box -->
+                <div class="flow-node flow-client">
+                  <div class="node-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                  <div class="node-title">Client</div>
+                  <div class="node-desc">Mobile / Web App</div>
+                </div>
+
+                <!-- Connectors -->
+                <div class="flow-connections">
+                  <div class="connection-line line-request">
+                    <span class="line-label">HTTP Request <i class="fa-solid fa-arrow-right"></i></span>
+                    <span class="animated-pulse pulse-req"></span>
+                  </div>
+                  <div class="connection-line line-response">
+                    <span class="line-label"><i class="fa-solid fa-arrow-left"></i> JSON Response</span>
+                    <span class="animated-pulse pulse-res"></span>
+                  </div>
+                </div>
+
+                <!-- Server Box -->
+                <div class="flow-node flow-server">
+                  <div class="node-icon"><i class="fa-solid fa-leaf"></i></div>
+                  <div class="node-title">Spring Boot</div>
+                  <div class="node-desc">REST Server</div>
+                </div>
+              </div>
+
+              <div class="diagram-details">
+                <span class="diagram-tag get-tag">GET /posts/12</span>
+                <span class="diagram-arrow"><i class="fa-solid fa-right-long"></i></span>
+                <span class="diagram-tag json-tag">{ "id": 12, "likes": 350 }</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 2: Why APIs are Needed -->
+        <section class="slide-card" id="slide-1">
+          <div class="slide-grid">
+            <div class="info-pane">
+              <h2 class="slide-heading">Why do we actually <span class="highlight">need APIs</span>?</h2>
+              <p class="intro-p">
+                Without APIs, every single frontend application would have to connect directly to databases, replicate complex security logic, and manage core business logic separately. 
+              </p>
+              
+              <div class="benefits-grid">
+                <div class="benefit-card">
+                  <div class="benefit-icon"><i class="fa-solid fa-cubes"></i></div>
+                  <h4>Write Once, Serve All</h4>
+                  <p>Your backend business code resides securely in a single Spring Boot application, serving iOS, Android, and Web frontends equally.</p>
+                </div>
+                <div class="benefit-card">
+                  <div class="benefit-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                  <h4>Data Security</h4>
+                  <p>Clients never touch database credentials directly. The REST API acts as a secure firewall validating permissions and incoming data formats.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="diagram-pane">
+              <h3 class="pane-subtitle"><i class="fa-solid fa-heart"></i> Real-World API Integration</h3>
+              <div class="brand-cards-container">
+                <!-- Swiggy -->
+                <div class="brand-card swiggy-card">
+                  <div class="brand-header">
+                    <i class="fa-solid fa-motorcycle"></i>
+                    <span>Swiggy API</span>
+                  </div>
+                  <p>When you place an order, your app sends a <code>POST /orders</code> API request with your food basket. The server processes payment and notifies the restaurant.</p>
+                </div>
+
+                <!-- Instagram -->
+                <div class="brand-card insta-card">
+                  <div class="brand-header">
+                    <i class="fa-brands fa-instagram"></i>
+                    <span>Instagram API</span>
+                  </div>
+                  <p>When you scroll, your app pulls feeds via <code>GET /feed?userId=99</code>. The REST API retrieves posts, formats pictures, and returns them as lightweight data packets.</p>
+                </div>
+
+                <!-- Amazon -->
+                <div class="brand-card amazon-card">
+                  <div class="brand-header">
+                    <i class="fa-brands fa-amazon"></i>
+                    <span>Amazon Search API</span>
+                  </div>
+                  <p>As you search, the website hits <code>GET /products?query=laptop</code>. The database filters millions of rows, returning prices, reviews, and stock limits in milliseconds.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 3: @RestController -->
+        <section class="slide-card" id="slide-2">
+          <div class="slide-grid-code">
+            <div class="info-pane">
+              <h2 class="slide-heading">The Gateway: <span class="highlight">@RestController</span></h2>
+              <p class="intro-p">
+                In Spring Boot, rendering a REST API endpoint starts with a single magic word: the <code>@RestController</code> annotation.
+              </p>
+
+              <div class="concept-breakdown">
+                <h4>What makes up a @RestController?</h4>
+                <div class="formula-box">
+                  <div class="formula-part">
+                    <strong>@Controller</strong>
+                    <span>Spring MVC component registration</span>
+                  </div>
+                  <div class="formula-plus"><i class="fa-solid fa-plus"></i></div>
+                  <div class="formula-part">
+                    <strong>@ResponseBody</strong>
+                    <span>Direct Java-to-JSON translation</span>
+                  </div>
+                  <div class="formula-equal"><i class="fa-solid fa-equals"></i></div>
+                  <div class="formula-result">
+                    <strong>@RestController</strong>
+                    <span>Perfect REST Endpoint Class!</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="explorer-overlay">
+                <i class="fa-solid fa-info-circle"></i>
+                <span><strong>Interactive Tip:</strong> Click or hover over the yellow and green highlighted codes in the editor to see detailed beginner explanations!</span>
+              </div>
+            </div>
+
+            <div class="code-pane">
+              <div class="editor-header">
+                <div class="editor-dots">
+                  <span class="dot-red"></span>
+                  <span class="dot-yellow"></span>
+                  <span class="dot-green"></span>
+                </div>
+                <span class="editor-file">ProductController.java</span>
+              </div>
+              <pre class="editor-body"><code><span class="keyword">package</span> com.example.academy.controller;
+
+<span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;
+<span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;
+
+<div class="code-highlight-interactive" data-tip="t-restcontroller"><span class="annotation">@RestController</span></div><span class="keyword">public class</span> <span class="class-name">ProductController</span> {
+
+    <div class="code-highlight-interactive" data-tip="t-getmapping"><span class="annotation">@GetMapping</span>(<span class="string">"/welcome"</span>)</div>    <span class="keyword">public</span> <span class="type-name">String</span> <span class="method-name">getWelcomeMessage</span>() {
+        <span class="keyword">return</span> <span class="string">"Welcome to Spring Boot REST API Course!"</span>;
+    }
+}</code></pre>
+
+              <!-- Explanation Popups inside script dynamically -->
+              <div class="editor-tooltip" id="editor-tooltip-box">
+                <h5 id="tooltip-title">Annotation Name</h5>
+                <p id="tooltip-desc">Hover over highlighted lines to read how they work.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 4: GET vs POST Methods -->
+        <section class="slide-card" id="slide-3">
+          <div class="slide-grid">
+            <div class="info-pane">
+              <h2 class="slide-heading">The Dual Forces: <span class="highlight">GET vs POST</span></h2>
+              <p class="intro-p">
+                HTTP methods tell Spring Boot what kind of action the client is requesting. While there are several methods, <strong>GET</strong> and <strong>POST</strong> are the primary lifelines of any API.
+              </p>
+
+              <div class="comparative-table">
+                <div class="comp-row comp-header">
+                  <div class="comp-cell">Feature</div>
+                  <div class="comp-cell method-get-header">@GetMapping</div>
+                  <div class="comp-cell method-post-header">@PostMapping</div>
+                </div>
+                <div class="comp-row">
+                  <div class="comp-cell highlight-cell">Action</div>
+                  <div class="comp-cell"><strong>Read / Retrieve</strong> data</div>
+                  <div class="comp-cell"><strong>Create / Submit</strong> data</div>
+                </div>
+                <div class="comp-row">
+                  <div class="comp-cell highlight-cell">Data Carriage</div>
+                  <div class="comp-cell">Sent inside <strong>URL path / query</strong></div>
+                  <div class="comp-cell">Sent inside <strong>Request Body</strong> (hidden)</div>
+                </div>
+                <div class="comp-row">
+                  <div class="comp-cell highlight-cell">Caching</div>
+                  <div class="comp-cell"><span class="badge-yes">Yes</span> (Safe to cache)</div>
+                  <div class="comp-cell"><span class="badge-no">No</span> (Triggers database write)</div>
+                </div>
+                <div class="comp-row">
+                  <div class="comp-cell highlight-cell">Real-World Case</div>
+                  <div class="comp-cell">Loading your Instagram profile</div>
+                  <div class="comp-cell">Submitting a new Amazon checkout</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="code-pane">
+              <div class="editor-header">
+                <div class="editor-dots">
+                  <span class="dot-red"></span>
+                  <span class="dot-yellow"></span>
+                  <span class="dot-green"></span>
+                </div>
+                <span class="editor-file">CartController.java</span>
+              </div>
+              <pre class="editor-body"><code><span class="annotation">@RestController</span>
+<span class="keyword">public class</span> <span class="class-name">CartController</span> {
+
+    <span class="comment">// 1. GET Request: Read cart contents</span>
+    <span class="annotation">@GetMapping</span>(<span class="string">"/cart"</span>)
+    <span class="keyword">public</span> <span class="type-name">Cart</span> <span class="method-name">getCart</span>() {
+        <span class="keyword">return</span> cartService.getUserCart();
+    }
+
+    <span class="comment">// 2. POST Request: Add dynamic item into database</span>
+    <span class="annotation">@PostMapping</span>(<span class="string">"/cart/add"</span>)
+    <span class="keyword">public</span> <span class="type-name">String</span> <span class="method-name">addToCart</span>(<span class="annotation">@RequestBody</span> <span class="type-name">Item</span> newItem) {
+        cartService.addItem(newItem);
+        <span class="keyword">return</span> <span class="string">"Item successfully added to your cart!"</span>;
+    }
+}</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 5: @PathVariable -->
+        <section class="slide-card" id="slide-4">
+          <div class="slide-grid-code">
+            <div class="info-pane">
+              <h2 class="slide-heading">Dynamic Mapping: <span class="highlight">@PathVariable</span></h2>
+              <p class="intro-p">
+                Hardcoded URLs are useless. You don't want a separate endpoint for every single product on Amazon! Instead, we map dynamic values inside our URLs.
+              </p>
+
+              <div class="path-visual-breakdown">
+                <h4>URL Breakdown Example:</h4>
+                <div class="url-strip">
+                  <span class="url-part-domain">https://api.amazon.com</span>
+                  <span class="url-part-separator">/</span>
+                  <span class="url-part-endpoint">products</span>
+                  <span class="url-part-separator">/</span>
+                  <span class="url-part-variable" id="dynamic-url-var">{productId}</span>
+                </div>
+                <div class="url-legend">
+                  <div class="legend-item"><span class="legend-color color-endpoint"></span> Standard Route</div>
+                  <div class="legend-item"><span class="legend-color color-variable"></span> Dynamic Variable (Binds to code)</div>
+                </div>
+              </div>
+
+              <div class="metaphor-box mt-2">
+                <div class="metaphor-icon"><i class="fa-solid fa-key"></i></div>
+                <div class="metaphor-text">
+                  <strong>How it connects to code:</strong><br>
+                  The placeholder <code>{productId}</code> in the <code>@GetMapping</code> URL matches the <code>@PathVariable</code> variable name inside the Java method argument list. Spring automatically intercepts the actual value (e.g. <code>4829</code>) and hands it to your Java code.
+                </div>
+              </div>
+            </div>
+
+            <div class="code-pane">
+              <div class="editor-header">
+                <div class="editor-dots">
+                  <span class="dot-red"></span>
+                  <span class="dot-yellow"></span>
+                  <span class="dot-green"></span>
+                </div>
+                <span class="editor-file">ProductController.java</span>
+              </div>
+              <pre class="editor-body"><code><span class="annotation">@RestController</span>
+<span class="keyword">public class</span> <span class="class-name">ProductController</span> {
+
+    <span class="comment">// Client visits: GET /products/8854</span>
+    <span class="annotation">@GetMapping</span>(<span class="string">"/products/{id}"</span>)
+    <span class="keyword">public</span> <span class="type-name">Product</span> <span class="method-name">getProductDetails</span>(
+        <span class="annotation">@PathVariable</span>(<span class="string">"id"</span>) <span class="type-name">int</span> productId
+    ) {
+        <span class="comment">// Spring automatically assigns 8854 to 'productId'</span>
+        <span class="keyword">return</span> productDb.findProductById(productId);
+    }
+}</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 6: JSON Response Format -->
+        <section class="slide-card" id="slide-5">
+          <div class="slide-grid">
+            <div class="info-pane">
+              <h2 class="slide-heading">API Communication: <span class="highlight">JSON Response</span></h2>
+              <p class="intro-p">
+                Computers don't exchange Java Class source files. They exchange structured strings of data. The standard global medium is <strong>JSON</strong> (JavaScript Object Notation).
+              </p>
+
+              <div class="explanation-box">
+                <h4><i class="fa-solid fa-arrows-spin"></i> Jackson: The Translator</h4>
+                <p>
+                  Spring Boot packages a critical library called <strong>Jackson</strong>. 
+                  When your Java method returns a plain Java Object (like an Instagram <code>Post</code> object), Jackson instantly translates (serializes) its private fields into standard JSON format. You do not write JSON strings by hand!
+                </p>
+              </div>
+
+              <div class="interactive-json-toggle">
+                <h4>Interactive Translation Showcase:</h4>
+                <div class="tab-triggers">
+                  <button class="json-tab active" id="btn-show-java"><i class="fa-brands fa-java"></i> Java Class Code</button>
+                  <button class="json-tab" id="btn-show-json"><i class="fa-solid fa-file-code"></i> Jackson JSON Output</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="code-pane">
+              <div class="editor-header">
+                <div class="editor-dots">
+                  <span class="dot-red"></span>
+                  <span class="dot-yellow"></span>
+                  <span class="dot-green"></span>
+                </div>
+                <span class="editor-file" id="translation-file-name">Post.java</span>
+              </div>
+              
+              <!-- Java Panel -->
+              <pre class="editor-body" id="java-translator-block"><code><span class="keyword">public class</span> <span class="class-name">Post</span> {
+    <span class="keyword">private</span> <span class="type-name">int</span> id = <span class="number">101</span>;
+    <span class="keyword">private</span> <span class="type-name">String</span> username = <span class="string">"jane_doe"</span>;
+    <span class="keyword">private</span> <span class="type-name">String</span> caption = <span class="string">"Hiking in Switz! 🇨🇭"</span>;
+    <span class="keyword">private</span> <span class="type-name">int</span> likes = <span class="number">1432</span>;
+
+    <span class="comment">// Getters and Setters ...</span>
+}</code></pre>
+
+              <!-- JSON Panel (Hidden by default) -->
+              <pre class="editor-body d-none" id="json-translator-block"><code>{
+  <span class="string">"id"</span>: <span class="number">101</span>,
+  <span class="string">"username"</span>: <span class="string">"jane_doe"</span>,
+  <span class="string">"caption"</span>: <span class="string">"Hiking in Switz! 🇨🇭"</span>,
+  <span class="string">"likes"</span>: <span class="number">1432</span>
+}</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 7: Live API Simulator -->
+        <section class="slide-card" id="slide-6">
+          <div class="simulator-layout" id="simulator">
+            <div class="simulator-controls">
+              <h3><i class="fa-solid fa-cube"></i> Interactive API Simulator Dashboard</h3>
+              <p>Select a real-world scenario, then hit the "Send Request" button to trace the packet's path and inspect the resulting JSON output.</p>
+              
+              <div class="scenario-selectors">
+                <!-- Selector 1: Instagram (GET) -->
+                <div class="selector-card active" data-scenario="instagram">
+                  <div class="selector-icon icon-insta"><i class="fa-brands fa-instagram"></i></div>
+                  <div class="selector-meta">
+                    <h4>Instagram Feed Fetch</h4>
+                    <span class="sim-badge badge-get">GET /posts/405</span>
+                  </div>
+                </div>
+
+                <!-- Selector 2: Swiggy (POST) -->
+                <div class="selector-card" data-scenario="swiggy">
+                  <div class="selector-icon icon-swiggy"><i class="fa-solid fa-utensils"></i></div>
+                  <div class="selector-meta">
+                    <h4>Swiggy Submit Order</h4>
+                    <span class="sim-badge badge-post">POST /orders/create</span>
+                  </div>
+                </div>
+
+                <!-- Selector 3: Amazon (GET with PathVar) -->
+                <div class="selector-card" data-scenario="amazon">
+                  <div class="selector-icon icon-amazon"><i class="fa-brands fa-amazon"></i></div>
+                  <div class="selector-meta">
+                    <h4>Amazon Product Detail</h4>
+                    <span class="sim-badge badge-get">GET /products/8992</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sim-action-area">
+                <button class="btn-fire-request" id="btn-fire-sim">
+                  <i class="fa-solid fa-paper-plane"></i> Send HTTP Request
+                </button>
+              </div>
+            </div>
+
+            <!-- Visual Flow Screen -->
+            <div class="simulator-screen">
+              <div class="sim-canvas">
+                
+                <!-- Client Display Box -->
+                <div class="sim-device">
+                  <div class="device-notch"></div>
+                  <div class="device-screen-content">
+                    <span class="screen-header" id="sim-screen-title">Instagram App</span>
+                    <div class="screen-body-frame" id="sim-app-display">
+                      <!-- Simulated content changes based on state -->
+                      <div class="app-post-placeholder">
+                        <div class="circle-avatar"></div>
+                        <div class="line-skeleton short"></div>
+                        <div class="rect-skeleton"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="device-label">Client Device</div>
+                </div>
+
+                <!-- Interactive Connection Wire with flying packet -->
+                <div class="sim-wire-container">
+                  <div class="wire-label" id="wire-state-text">Idle</div>
+                  <div class="sim-wire">
+                    <div class="sim-packet" id="sim-data-packet">
+                      <i class="fa-solid fa-box"></i>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Spring Boot Server Container -->
+                <div class="sim-server" id="server-box">
+                  <div class="server-rack">
+                    <div class="rack-indicator" id="rack-ind-1"></div>
+                    <div class="rack-indicator" id="rack-ind-2"></div>
+                  </div>
+                  <div class="server-label">
+                    <i class="fa-solid fa-leaf"></i>
+                    <span>Spring Boot Server</span>
+                  </div>
+                  <div class="server-active-annotation" id="server-annotation-glow">
+                    @RestController
+                  </div>
+                </div>
+              </div>
+
+              <!-- Realtime Output Console Box -->
+              <div class="console-box">
+                <div class="console-tab-header">
+                  <span><i class="fa-solid fa-terminal"></i> API Console Output</span>
+                  <span class="status-light-indicator" id="sim-status-code">200 OK</span>
+                </div>
+                <pre class="console-body"><code id="console-output-text">// Click "Send HTTP Request" to trigger simulation...</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 8: Interview Q&A Prep -->
+        <section class="slide-card" id="slide-7">
+          <div class="qa-layout">
+            <div class="qa-header-pane">
+              <h2 class="slide-heading"><span class="highlight">Interview Q&A</span> Prep Desk</h2>
+              <p class="intro-p">
+                Ace your next technical interview. Click on any question card below to reveal the concise, developer-centric answer with real-world context.
+              </p>
+              
+              <div class="prep-card">
+                <div class="prep-card-icon"><i class="fa-solid fa-circle-check"></i></div>
+                <div class="prep-card-text">
+                  <strong>Pro-Tip for Interviews:</strong><br>
+                  When asked about REST, always explain using a client-server metaphor first. Explain `@RestController` by highlighting that it bypasses standard HTML rendering and directly serializes JSON using Jackson.
+                </div>
+              </div>
+            </div>
+
+            <!-- Q&A Accordion -->
+            <div class="accordion-pane">
+              
+              <!-- Q1 -->
+              <div class="accordion-item">
+                <button class="accordion-header">
+                  <span class="qa-number">Q1</span>
+                  <span class="qa-question">What is the difference between @Controller and @RestController?</span>
+                  <i class="fa-solid fa-chevron-down acc-icon"></i>
+                </button>
+                <div class="accordion-content">
+                  <p>
+                    A standard <code>@Controller</code> is used in traditional web apps to return HTML views (like Thymeleaf, JSP). You must add <code>@ResponseBody</code> to make it write JSON directly. 
+                  </p>
+                  <p>
+                    <code>@RestController</code> is a convenient wrapper that combines <code>@Controller</code> and <code>@ResponseBody</code> automatically, telling Spring that every method inside the class directly outputs JSON serialized body data.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Q2 -->
+              <div class="accordion-item">
+                <button class="accordion-header">
+                  <span class="qa-number">Q2</span>
+                  <span class="qa-question">How does @PathVariable differ from @RequestParam in dynamic routes?</span>
+                  <i class="fa-solid fa-chevron-down acc-icon"></i>
+                </button>
+                <div class="accordion-content">
+                  <p>
+                    <code>@PathVariable</code> extracts values directly from the main URL structure itself. (e.g., <code>/products/{id}</code> -> <code>/products/402</code>). It represents resource hierarchies.
+                  </p>
+                  <p>
+                    <code>@RequestParam</code> extracts query parameters appending the URL path (e.g., <code>/products?category=shoes</code>). It represents sorting, filtering, or optional search parameters.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Q3 -->
+              <div class="accordion-item">
+                <button class="accordion-header">
+                  <span class="qa-number">Q3</span>
+                  <span class="qa-question">What library performs Java-to-JSON serialization behind the scenes?</span>
+                  <i class="fa-solid fa-chevron-down acc-icon"></i>
+                </button>
+                <div class="accordion-content">
+                  <p>
+                    Spring Boot automatically registers the <strong>Jackson Converter (MappingJackson2HttpMessageConverter)</strong>. Whenever an endpoint class is declared with <code>@RestController</code>, this Jackson mapper intercepts the returned Java object and maps public properties/getters into standard JSON strings.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Q4 -->
+              <div class="accordion-item">
+                <button class="accordion-header">
+                  <span class="qa-number">Q4</span>
+                  <span class="qa-question">What is the role of @RequestBody annotation in @PostMapping?</span>
+                  <i class="fa-solid fa-chevron-down acc-icon"></i>
+                </button>
+                <div class="accordion-content">
+                  <p>
+                    Unlike GET requests, data for POST requests arrives inside the invisible <strong>HTTP Request Body</strong> (usually as raw JSON). The <code>@RequestBody</code> annotation directs Spring to capture this raw JSON text, pass it to Jackson, and convert it instantly into a matching Java Object.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Q5 -->
+              <div class="accordion-item">
+                <button class="accordion-header">
+                  <span class="qa-number">Q5</span>
+                  <span class="qa-question">What are standard HTTP Status Codes returned by APIs?</span>
+                  <i class="fa-solid fa-chevron-down acc-icon"></i>
+                </button>
+                <div class="accordion-content">
+                  <ul>
+                    <li><strong>200 OK:</strong> Request succeeded, returns requested data.</li>
+                    <li><strong>201 Created:</strong> Successfully created a new resource (e.g. POST order).</li>
+                    <li><strong>400 Bad Request:</strong> Client sent invalid or malformed data.</li>
+                    <li><strong>404 Not Found:</strong> The requested resource could not be found (e.g., product doesn't exist).</li>
+                    <li><strong>500 Internal Server Error:</strong> The Spring Boot server crashed due to an unhandled backend exception.</li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Navigation Arrows/Controls at Footer -->
+      <footer class="viewport-footer">
+        <button id="btn-prev-slide" class="footer-nav-btn"><i class="fa-solid fa-arrow-left"></i> Previous Slide</button>
+        <div class="footer-dots-indicator" id="footer-dots">
+          <!-- Populated by javascript -->
+        </div>
+        <button id="btn-next-slide" class="footer-nav-btn">Next Slide <i class="fa-solid fa-arrow-right"></i></button>
+      </footer>
+    </main>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
