@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Spring Boot REST API Advanced Developer Simulation Lab. Master backend architecture, JWT security, microservices, databases, caching, and annotations through live interactives.">
-  <title>Spring Boot Backend Simulation Lab | Interactive Learning Platform</title>
+  <meta name="description" content="Spring Boot REST API Simplified Diner Simulator. Learn backend concepts through real-world restaurant analogies.">
+  <title>Spring Boot Diner Lab | Interactive Beginner Platform</title>
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,7 +16,7 @@
 </head>
 <body>
 
-  <!-- Futuristic Animated Grid Background -->
+  <!-- Premium Ambient Glow Lights -->
   <div class="particles-bg" id="particles-container"></div>
   <div class="glow-orb orb-purple"></div>
   <div class="glow-orb orb-indigo"></div>
@@ -24,88 +24,76 @@
   <!-- Primary Workspace Container -->
   <div class="lab-container">
     
-    <!-- LEFT PANEL: Permanent Workspace Navigation -->
+    <!-- LEFT PANEL: Diner Dashboard Sidebar -->
     <aside class="lab-sidebar">
       <div class="sidebar-brand">
         <div class="brand-logo">
-          <i class="fa-solid fa-microchip"></i>
+          <i class="fa-solid fa-utensils"></i>
         </div>
         <div class="brand-info">
-          <h2>Spring Backend</h2>
-          <span>Simulation Lab v2.0</span>
+          <h2>Spring Diner</h2>
+          <span>Beginner Lab v1.0</span>
         </div>
       </div>
 
-      <!-- Training Progress Card -->
+      <!-- Progression Meter -->
       <div class="sidebar-progress">
         <div class="progress-details">
-          <span>Simulation Progress</span>
+          <span>Learning Progress</span>
           <span id="txt-overall-progress">0%</span>
         </div>
         <div class="progress-track">
           <div class="progress-fill" id="bar-overall-progress"></div>
         </div>
         <div class="progress-checkpoints">
-          <span id="checkpoint-indicator"><i class="fa-solid fa-flag"></i> Novice Class</span>
+          <span id="checkpoint-indicator"><i class="fa-solid fa-baby"></i> Diner Novice</span>
         </div>
       </div>
 
-      <!-- Lab Station Control Menu -->
+      <!-- Dashboard Controls -->
       <nav class="sidebar-nav">
         <ul>
           <li class="nav-item active" data-tab="api-lab">
             <a href="javascript:void(0)">
-              <span class="nav-icon"><i class="fa-solid fa-circle-play"></i></span>
-              <span class="nav-label">1. API & Architecture Lab</span>
+              <span class="nav-icon"><i class="fa-solid fa-utensils"></i></span>
+              <span class="nav-label">1. Diner Flow (REST API)</span>
             </a>
           </li>
           <li class="nav-item" data-tab="annotation-lab">
             <a href="javascript:void(0)">
-              <span class="nav-icon"><i class="fa-solid fa-tags"></i></span>
-              <span class="nav-label">2. Annotation Explorer</span>
+              <span class="nav-icon"><i class="fa-solid fa-book-open"></i></span>
+              <span class="nav-label">2. Kitchen Annotations</span>
             </a>
           </li>
           <li class="nav-item" data-tab="jwt-lab">
             <a href="javascript:void(0)">
-              <span class="nav-icon"><i class="fa-solid fa-user-shield"></i></span>
-              <span class="nav-label">3. JWT Security Sandbox</span>
-            </a>
-          </li>
-          <li class="nav-item" data-tab="microservices-lab">
-            <a href="javascript:void(0)">
-              <span class="nav-icon"><i class="fa-solid fa-cubes-stacked"></i></span>
-              <span class="nav-label">4. Microservice Mesh</span>
-            </a>
-          </li>
-          <li class="nav-item" data-tab="performance-lab">
-            <a href="javascript:void(0)">
-              <span class="nav-icon"><i class="fa-solid fa-gauge-high"></i></span>
-              <span class="nav-label">5. Perf & DevOps Visualizer</span>
+              <span class="nav-icon"><i class="fa-solid fa-ticket"></i></span>
+              <span class="nav-label">3. Ticket Security (JWT)</span>
             </a>
           </li>
           <li class="nav-item" data-tab="academy-lab">
             <a href="javascript:void(0)">
               <span class="nav-icon"><i class="fa-solid fa-graduation-cap"></i></span>
-              <span class="nav-label">6. Academy & Quiz Desk</span>
+              <span class="nav-label">4. Academy & Caching</span>
             </a>
           </li>
         </ul>
       </nav>
 
-      <!-- Unlocked Badges Panel -->
+      <!-- Achievement Shelf -->
       <div class="sidebar-badges">
-        <h4>Achievements Unlocked</h4>
+        <h4>Earned Badges</h4>
         <div class="badges-row" id="badges-shelf">
-          <div class="badge-slot locked" data-badge="novice" title="Spring Novice: Score 1 correct answer in the Quiz">
+          <div class="badge-slot locked" data-badge="novice" title="Diner Helper: Answer 1 Quiz question correctly">
             <i class="fa-solid fa-seedling"></i>
           </div>
-          <div class="badge-slot locked" data-badge="rest" title="REST Architect: Complete all API request simulations">
+          <div class="badge-slot locked" data-badge="rest" title="Restaurant Manager: Run all 4 order presets">
             <i class="fa-solid fa-network-wired"></i>
           </div>
-          <div class="badge-slot locked" data-badge="security" title="Security Officer: Successfully crack the JWT login simulation">
+          <div class="badge-slot locked" data-badge="security" title="VIP Host: Validate a secured JWT token">
             <i class="fa-solid fa-key"></i>
           </div>
-          <div class="badge-slot locked" data-badge="master" title="Backend Maestro: Pass the comprehensive final quiz">
+          <div class="badge-slot locked" data-badge="master" title="Master Chef: Complete the Quiz with a high score">
             <i class="fa-solid fa-crown"></i>
           </div>
         </div>
@@ -113,23 +101,23 @@
 
       <div class="sidebar-footer">
         <button id="btn-theme-switcher" class="sidebar-action-btn">
-          <i class="fa-solid fa-circle-half-stroke"></i> Switch Theme
+          <i class="fa-solid fa-circle-half-stroke"></i> Switch Visual Mode
         </button>
       </div>
     </aside>
 
-    <!-- RIGHT PANEL: Lab Station Viewport -->
+    <!-- RIGHT PANEL: Diner Simulation Viewport -->
     <main class="lab-viewport">
       
-      <!-- HEADER / STATUS TELEMETRY -->
+      <!-- HEADER STATUS telemetry -->
       <header class="viewport-header">
         <div class="header-status">
           <span class="status-indicator-light online"></span>
-          <span class="status-text">Backend Simulation Engine Online</span>
+          <span class="status-text">Restaurant Backend Simulation Engine Online</span>
         </div>
         <div class="header-title">
-          <h1 id="viewport-title-label">API & Architecture Lab</h1>
-          <p id="viewport-desc-label">Interactive developer workshop visualizing layered REST API execution pipelines.</p>
+          <h1 id="viewport-title-label">Diner API & Flow</h1>
+          <p id="viewport-desc-label">Witness how an API works using the simple analogy of a restaurant diner!</p>
         </div>
       </header>
 
@@ -137,90 +125,86 @@
       <div class="tab-contents-wrapper">
 
         <!-- ===================================================================
-             TAB 1: API & ARCHITECTURE LAB
+             TAB 1: DINER FLOW (REST API PLAYGROUND)
              =================================================================== -->
         <section class="tab-pane active" id="tab-api-lab">
           <div class="api-lab-grid">
             
-            <!-- Column 1: API Playground & MySQL Table -->
+            <!-- Column 1: Postman Menu Selector & Pantry Database -->
             <div class="api-control-panel glass-card">
               <div class="card-header">
-                <h3><i class="fa-solid fa-sliders"></i> Developer API Playground (Postman)</h3>
+                <h3><i class="fa-solid fa-bell"></i> Step 1: Place an Order (Diner Playground)</h3>
               </div>
               <div class="card-body">
                 <!-- Sandbox Preset Quicklinks -->
                 <div class="playground-presets">
-                  <span>Scenario Presets:</span>
+                  <span>Choose a Customer Request Scenario:</span>
                   <div class="preset-buttons">
-                    <button class="btn-preset active" data-preset="insta-feed">Instagram Feed</button>
-                    <button class="btn-preset" data-preset="swiggy-order">Swiggy Checkout</button>
-                    <button class="btn-preset" data-preset="amazon-search">Amazon Search</button>
-                    <button class="btn-preset" data-preset="whatsapp-send">WhatsApp Text</button>
-                    <button class="btn-preset" data-preset="netflix-rec">Netflix Recs</button>
-                    <button class="btn-preset" data-preset="upi-pay">UPI Payment</button>
+                    <button class="btn-preset active" data-preset="insta-feed">📷 Instagram Feed (GET)</button>
+                    <button class="btn-preset" data-preset="swiggy-order">🍔 Swiggy Burger (POST)</button>
+                    <button class="btn-preset" data-preset="amazon-search">📦 Amazon Search (GET)</button>
+                    <button class="btn-preset" data-preset="whatsapp-send">💬 WhatsApp Send (POST)</button>
                   </div>
                 </div>
 
-                <!-- Postman URL bar -->
+                <!-- URL Bar -->
                 <div class="postman-bar">
                   <select id="sel-http-method" class="postman-select">
-                    <option value="GET">GET</option>
-                    <option value="POST">POST</option>
-                    <option value="PUT">PUT</option>
-                    <option value="DELETE">DELETE</option>
+                    <option value="GET">GET (Fetch Data)</option>
+                    <option value="POST">POST (Submit Data)</option>
                   </select>
                   <input type="text" id="ipt-postman-url" value="https://api.instagram.com/v1/feed?userId=2059" class="postman-input" placeholder="Enter API URL...">
                   <button id="btn-postman-send" class="postman-send-btn">
-                    <i class="fa-solid fa-paper-plane"></i> Send
+                    <i class="fa-solid fa-paper-plane"></i> Send Request
                   </button>
                 </div>
 
-                <!-- Postman Request Body Section (Only shows for POST/PUT) -->
+                <!-- Request Body (For POST) -->
                 <div class="postman-payload-box hidden" id="postman-body-wrapper">
                   <div class="payload-tab-header">
-                    <span>Request Body (JSON)</span>
+                    <span>What information are you sending? (Request Body JSON)</span>
                   </div>
                   <textarea id="txt-postman-body" class="postman-textarea" placeholder="{...}"></textarea>
                 </div>
 
-                <!-- Database Simulation Grid -->
+                <!-- Database Grid -->
                 <div class="database-simulator-box">
                   <div class="db-header">
-                    <span><i class="fa-solid fa-database"></i> Live MySQL Database: <code>mock_db.app_orders</code></span>
-                    <span class="db-status-badge" id="db-action-status">Idle</span>
+                    <span><i class="fa-solid fa-database"></i> Live Pantry Database: <code>restaurant_records</code></span>
+                    <span class="db-status-badge" id="db-action-status">Standby</span>
                   </div>
                   <div class="db-table-wrapper">
                     <table class="db-table" id="db-visual-table">
                       <thead>
                         <tr>
-                          <th>id</th>
-                          <th>customer</th>
-                          <th>item_name</th>
-                          <th>amount_inr</th>
-                          <th>status</th>
+                          <th>Order ID</th>
+                          <th>Customer</th>
+                          <th>Item Name</th>
+                          <th>Price ($)</th>
+                          <th>Kitchen Status</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr data-row-id="101">
                           <td>101</td>
-                          <td>jane_doe</td>
-                          <td>Instagram Post #402</td>
-                          <td>0.00</td>
-                          <td><span class="db-status success">ACTIVE</span></td>
+                          <td>dave_travels</td>
+                          <td>📷 Instagram Post Feed</td>
+                          <td>$0.00</td>
+                          <td><span class="db-status success">SERVED</span></td>
                         </tr>
                         <tr data-row-id="102">
                           <td>102</td>
-                          <td>john_k</td>
-                          <td>Paneer Butter Masala</td>
-                          <td>450.00</td>
-                          <td><span class="db-status success">COMPLETED</span></td>
+                          <td>sarah_k</td>
+                          <td>🍔 Double Cheese Burger</td>
+                          <td>$9.99</td>
+                          <td><span class="db-status success">SERVED</span></td>
                         </tr>
                         <tr data-row-id="103">
                           <td>103</td>
-                          <td>mollie_s</td>
-                          <td>Mechanical Keyboard</td>
-                          <td>3200.00</td>
-                          <td><span class="db-status warning">PENDING</span></td>
+                          <td>mollie_dev</td>
+                          <td>📦 Wireless Mouse</td>
+                          <td>$45.00</td>
+                          <td><span class="db-status warning">PREPARING</span></td>
                         </tr>
                       </tbody>
                     </table>
@@ -229,77 +213,77 @@
               </div>
             </div>
 
-            <!-- Column 2: Architecture Mesh & Terminal Console -->
+            <!-- Column 2: Visual Pipeline & Logs -->
             <div class="api-telemetry-panel">
               
               <!-- 6-Layer Architecture Visualizer -->
               <div class="architecture-diagram glass-card">
                 <div class="card-header">
-                  <h3><i class="fa-solid fa-network-wired"></i> Full Architecture Layer Pipeline</h3>
+                  <h3><i class="fa-solid fa-route"></i> Step 2: Watch the Request Travel</h3>
                 </div>
                 <div class="card-body">
                   <div class="layers-grid">
                     
                     <!-- Layer 1: Client -->
-                    <div class="arch-layer" id="layer-client" data-layer-info="Client App initiating HTTP handshake request.">
-                      <div class="layer-badge">Client</div>
+                    <div class="arch-layer" id="layer-client" data-layer-info="You (the hungry customer) place an order on your mobile screen.">
+                      <div class="layer-badge">1. Diner Client</div>
                       <div class="layer-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
-                      <span class="layer-title">Mobile / Web Browser</span>
+                      <span class="layer-title">Customer</span>
                     </div>
 
                     <!-- Flow Wire 1 -->
                     <div class="arch-wire"><span class="arch-packet" id="packet-1"></span></div>
 
                     <!-- Layer 2: API Gateway -->
-                    <div class="arch-layer" id="layer-gateway" data-layer-info="API Gateway intercepts the request, routes it, and authenticates the handshake.">
-                      <div class="layer-badge">Gateway</div>
-                      <div class="layer-icon"><i class="fa-solid fa-door-closed"></i></div>
-                      <span class="layer-title">Routing & Auth Filter</span>
+                    <div class="arch-layer" id="layer-gateway" data-layer-info="The security host at the restaurant door checks if you have a valid pass or reservation.">
+                      <div class="layer-badge">2. Gateway</div>
+                      <div class="layer-icon"><i class="fa-solid fa-user-shield"></i></div>
+                      <span class="layer-title">Security Guard</span>
                     </div>
 
                     <!-- Flow Wire 2 -->
                     <div class="arch-wire"><span class="arch-packet" id="packet-2"></span></div>
 
                     <!-- Layer 3: Controller -->
-                    <div class="arch-layer" id="layer-controller" data-layer-info="@RestController intercepts specific endpoint paths and binds parameters.">
-                      <div class="layer-badge">Controller</div>
+                    <div class="arch-layer" id="layer-controller" data-layer-info="The waiter (@RestController) greets you, reads your request, and routes it to the kitchen.">
+                      <div class="layer-badge">3. Controller</div>
                       <div class="layer-icon"><i class="fa-solid fa-leaf"></i></div>
-                      <span class="layer-title">@RestController Mapping</span>
+                      <span class="layer-title">The Waiter</span>
                     </div>
 
                     <!-- Flow Wire 3 -->
                     <div class="arch-wire"><span class="arch-packet" id="packet-3"></span></div>
 
                     <!-- Layer 4: Service Layer -->
-                    <div class="arch-layer" id="layer-service" data-layer-info="@Service houses core backend business algorithms, calculations, and rules.">
-                      <div class="layer-badge">Service</div>
-                      <div class="layer-icon"><i class="fa-solid fa-gears"></i></div>
-                      <span class="layer-title">@Service Business Logic</span>
+                    <div class="arch-layer" id="layer-service" data-layer-info="The master chef (@Service) processes the cooking logic, applying secret recipes and calculations.">
+                      <div class="layer-badge">4. Service</div>
+                      <div class="layer-icon"><i class="fa-solid fa-kitchen-set"></i></div>
+                      <span class="layer-title">The Chef</span>
                     </div>
 
                     <!-- Flow Wire 4 -->
                     <div class="arch-wire"><span class="arch-packet" id="packet-4"></span></div>
 
                     <!-- Layer 5: Repository Layer -->
-                    <div class="arch-layer" id="layer-repository" data-layer-info="@Repository interface executes JPA/Hibernate queries mapping to DB cells.">
-                      <div class="layer-badge">Repository</div>
-                      <div class="layer-icon"><i class="fa-solid fa-folder-tree"></i></div>
-                      <span class="layer-title">@Repository DB Mapping</span>
+                    <div class="arch-layer" id="layer-repository" data-layer-info="The pantry assistant (@Repository) is told what ingredients to grab from storage.">
+                      <div class="layer-badge">5. Repository</div>
+                      <div class="layer-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                      <span class="layer-title">Pantry Assistant</span>
                     </div>
 
                     <!-- Flow Wire 5 -->
                     <div class="arch-wire"><span class="arch-packet" id="packet-5"></span></div>
 
                     <!-- Layer 6: MySQL Database -->
-                    <div class="arch-layer" id="layer-database" data-layer-info="Physical database storage containing persistent orders, accounts, and posts tables.">
-                      <div class="layer-badge">Database</div>
+                    <div class="arch-layer" id="layer-database" data-layer-info="The fridge (Database) where the actual raw, persistent data is stored safely.">
+                      <div class="layer-badge">6. Database</div>
                       <div class="layer-icon"><i class="fa-solid fa-database"></i></div>
-                      <span class="layer-title">MySQL Database Server</span>
+                      <span class="layer-title">The Fridge</span>
                     </div>
 
                   </div>
                   <div class="architecture-annotation-box" id="lbl-architecture-explanation">
-                    Click "Send" in the playground to watch the packet travel through all 6 architectural tiers in real-time. Hover over a tier to read its specific duty.
+                    Click "Send Request" above to watch the order packet travel from the Customer to the Kitchen Fridge. Hover over any worker node to learn what they do.
                   </div>
                 </div>
               </div>
@@ -312,7 +296,7 @@
                     <span class="dot-yellow"></span>
                     <span class="dot-green"></span>
                   </div>
-                  <span class="console-title"><i class="fa-solid fa-terminal"></i> Spring Boot Logging Console Output</span>
+                  <span class="console-title"><i class="fa-solid fa-terminal"></i> Spring Boot Logs & Diner Translations</span>
                   <div class="console-telemetry-badge" id="lbl-terminal-status">200 OK</div>
                 </div>
                 <div class="console-body-wrapper">
@@ -326,36 +310,33 @@
         </section>
 
         <!-- ===================================================================
-             TAB 2: ANNOTATION EXPLORER
+             TAB 2: KITCHEN ANNOTATIONS
              =================================================================== -->
         <section class="tab-pane" id="tab-annotation-lab">
           <div class="annotation-lab-layout">
             
-            <!-- Left sidebar: Annotation Selection Matrix -->
+            <!-- Left panel: Annotation Selection Matrix -->
             <div class="annotation-selection-panel glass-card">
-              <h3><i class="fa-solid fa-tags"></i> Core Spring Boot Annotation Suite</h3>
-              <p>Click on any annotation tag below to open its visual explanation, real-world metaphor, code sample, and key interview tips.</p>
+              <h3><i class="fa-solid fa-tags"></i> Core Spring Kitchen Tags (Annotations)</h3>
+              <p>Annotations are special "tags" or "stickers" we stick on our Java code to automatically tell Spring Boot how to treat them. Click a sticker below to read its real-life analogy!</p>
               
               <div class="annotation-matrix-grid">
                 <!-- Group 1: Controller Layer -->
                 <div class="matrix-group">
-                  <h4>HTTP Gateway Layer</h4>
+                  <h4>Ordering System (HTTP)</h4>
                   <div class="annotation-btn active" data-anno="restcontroller">@RestController</div>
                   <div class="annotation-btn" data-anno="getmapping">@GetMapping</div>
                   <div class="annotation-btn" data-anno="postmapping">@PostMapping</div>
-                  <div class="annotation-btn" data-anno="putmapping">@PutMapping</div>
-                  <div class="annotation-btn" data-anno="deletemapping">@DeleteMapping</div>
                   <div class="annotation-btn" data-anno="pathvariable">@PathVariable</div>
                   <div class="annotation-btn" data-anno="requestbody">@RequestBody</div>
                 </div>
 
                 <!-- Group 2: Core Spring/DI -->
                 <div class="matrix-group">
-                  <h4>Dependency Injection & Services</h4>
+                  <h4>Kitchen Staff & Automatic Tools</h4>
                   <div class="annotation-btn" data-anno="autowired">@Autowired</div>
                   <div class="annotation-btn" data-anno="service">@Service</div>
                   <div class="annotation-btn" data-anno="repository">@Repository</div>
-                  <div class="annotation-btn" data-anno="component">@Component</div>
                 </div>
               </div>
             </div>
@@ -364,11 +345,11 @@
             <div class="annotation-workspace glass-card" id="annotation-detail-panel">
               <div class="workspace-placeholder" id="annotation-placeholder">
                 <i class="fa-solid fa-tags"></i>
-                <h3>Select an Annotation</h3>
-                <p>Click on any annotation on the left menu to display interactive code examples and analogies.</p>
+                <h3>Select a Kitchen Sticker</h3>
+                <p>Click on any annotation tag on the left to reveal its beginner analogy and usage.</p>
               </div>
 
-              <!-- Main Detail View (Visible after click) -->
+              <!-- Main Detail View -->
               <div class="workspace-details hidden" id="annotation-details-content">
                 <div class="details-heading">
                   <h2 id="txt-details-title">@RestController</h2>
@@ -376,26 +357,26 @@
                 </div>
 
                 <div class="details-section section-analogy">
-                  <h4><i class="fa-solid fa-lightbulb"></i> The Beginner-Friendly Analogy</h4>
+                  <h4><i class="fa-solid fa-lightbulb"></i> Real-Life Metaphor</h4>
                   <p id="txt-details-analogy">Analogy goes here...</p>
                 </div>
 
                 <div class="details-section section-code">
                   <div class="code-header">
-                    <span><i class="fa-solid fa-code"></i> Live Production Sample</span>
-                    <span class="code-lang">Java</span>
+                    <span><i class="fa-solid fa-code"></i> What it Looks Like in Code</span>
+                    <span class="code-lang">Java Code</span>
                   </div>
                   <pre class="code-snippet-pre"><code class="fira-mono-code" id="txt-details-code">// Code snippet...</code></pre>
                 </div>
 
                 <div class="details-grid-footer">
                   <div class="details-section section-why">
-                    <h4><i class="fa-solid fa-circle-question"></i> Why do we need it?</h4>
+                    <h4><i class="fa-solid fa-circle-question"></i> In Plain English, why do we need it?</h4>
                     <p id="txt-details-why">Why explanation goes here...</p>
                   </div>
                   
                   <div class="details-section section-interview">
-                    <h4><i class="fa-solid fa-key"></i> Interview Secrets</h4>
+                    <h4><i class="fa-solid fa-comments"></i> Interview Tip for Beginners</h4>
                     <p id="txt-details-interview">Interview tips go here...</p>
                   </div>
                 </div>
@@ -406,7 +387,7 @@
         </section>
 
         <!-- ===================================================================
-             TAB 3: JWT SECURITY SANDBOX
+             TAB 3: TICKET SECURITY (JWT SANDBOX)
              =================================================================== -->
         <section class="tab-pane" id="tab-jwt-lab">
           <div class="jwt-sandbox-layout">
@@ -414,40 +395,40 @@
             <!-- Interactive Login Form & JWT Token Decipher -->
             <div class="jwt-control-box glass-card">
               <div class="card-header">
-                <h3><i class="fa-solid fa-key"></i> JWT Authentication Laboratory</h3>
+                <h3><i class="fa-solid fa-ticket"></i> The VIP Wristband / Movie Ticket Analogy</h3>
               </div>
               <div class="card-body">
-                <p>REST APIs are completely stateless. To secure them, we issue a secure, signed **JSON Web Token (JWT)** when a user logs in. The client must send this token inside the HTTP header for all future requests.</p>
+                <p>Traditional servers try to remember every user's face, which crashes when millions visit. Instead, Spring Boot REST APIs use a **JWT (JSON Web Token)**. It's like a stamped paper wristband. Once logged in, the server gives you a wristband with your seat number and name. For all future actions, you just flash the wristband! The guard just checks the signature stamp without looking you up in a database.</p>
                 
                 <!-- Authentication Panel -->
                 <div class="jwt-login-form">
-                  <h4>Step 1: Authenticate with Server</h4>
+                  <h4>Step 1: Get Your Stamped VIP Wristband</h4>
                   <div class="input-group">
-                    <label>Mock Username</label>
-                    <input type="text" id="ipt-jwt-user" class="jwt-input" value="mollie_developer">
+                    <label>Your Diner Name</label>
+                    <input type="text" id="ipt-jwt-user" class="jwt-input" value="sam_hungry">
                   </div>
                   <div class="input-group">
-                    <label>Password</label>
-                    <input type="password" id="ipt-jwt-pass" class="jwt-input" value="spring_is_awesome">
+                    <label>Secret Password</label>
+                    <input type="password" id="ipt-jwt-pass" class="jwt-input" value="burger123">
                   </div>
                   <button id="btn-jwt-login" class="btn-fire-request">
-                    <i class="fa-solid fa-lock-open"></i> Login & Generate JWT
+                    <i class="fa-solid fa-lock-open"></i> Login & Generate Ticket (JWT)
                   </button>
                 </div>
 
                 <!-- Locked Endpoint Tester -->
                 <div class="jwt-locked-tester">
-                  <h4>Step 3: Access Secured Endpoint</h4>
+                  <h4>Step 3: Try Entering the VIP Dining Room</h4>
                   <div class="endpoint-link-box">
                     <span class="get-method">GET</span>
-                    <code>/api/v1/secure-dashboard</code>
+                    <code>/api/v1/vip-diner-hall</code>
                   </div>
                   <div class="jwt-test-buttons">
                     <button class="btn-test-secured btn-lock-out" id="btn-jwt-test-unauth">
-                      <i class="fa-solid fa-user-slash"></i> Request WITHOUT Token
+                      <i class="fa-solid fa-user-slash"></i> Request WITHOUT Ticket
                     </button>
                     <button class="btn-test-secured btn-lock-in" id="btn-jwt-test-auth" disabled>
-                      <i class="fa-solid fa-user-shield"></i> Request WITH Token
+                      <i class="fa-solid fa-user-shield"></i> Request WITH Ticket
                     </button>
                   </div>
                 </div>
@@ -458,20 +439,20 @@
             <!-- JWT Decoder & Visual Authorization Flow -->
             <div class="jwt-visualizer-box glass-card">
               <div class="card-header">
-                <h3><i class="fa-solid fa-fingerprint"></i> Dynamic JWT Token Inspect Structure</h3>
+                <h3><i class="fa-solid fa-eye"></i> Step 2: Inspect Your Stamped Wristband</h3>
               </div>
               <div class="card-body">
                 <!-- Base64 Split Token View -->
                 <div class="jwt-token-display">
-                  <div class="jwt-part jwt-part-header" id="jwt-part-1" title="Header: Algorithm & Token Type">
+                  <div class="jwt-part jwt-part-header" id="jwt-part-1" title="Header: The Wristband Material">
                     <span>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</span>
                   </div>
                   <div class="jwt-dot">.</div>
-                  <div class="jwt-part jwt-part-payload" id="jwt-part-2" title="Payload: User data, claims, and permissions">
-                    <span>eyJzdWIiOiJtb2xsaWVfZGV2ZWxvcGVyIiwiZXhwIjoxNzk4NTMwMDAwfQ</span>
+                  <div class="jwt-part jwt-part-payload" id="jwt-part-2" title="Payload: Your Name and Expiration Time">
+                    <span>eyJzdWIiOiJzYW1faHVuZ3J5IiwiZXhwIjoxNzk4NTMwMDAwfQ</span>
                   </div>
                   <div class="jwt-dot">.</div>
-                  <div class="jwt-part jwt-part-signature" id="jwt-part-3" title="Signature: Server validation stamp">
+                  <div class="jwt-part jwt-part-signature" id="jwt-part-3" title="Signature: The Security Holographic Stamp">
                     <span>SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</span>
                   </div>
                 </div>
@@ -479,18 +460,17 @@
                 <!-- Decoded Fields Display -->
                 <div class="jwt-decoded-grid">
                   <div class="decoded-card col-header">
-                    <h5>Header (Algorithm)</h5>
+                    <h5>Wristband Type (Header)</h5>
                     <pre><code id="txt-jwt-decoded-header">{
   "alg": "HS256",
   "typ": "JWT"
 }</code></pre>
                   </div>
                   <div class="decoded-card col-payload">
-                    <h5>Payload (User Claims)</h5>
+                    <h5>Ticket Info (Payload Data)</h5>
                     <pre><code id="txt-jwt-decoded-payload">{
-  "sub": "guest_user",
-  "exp": 1798530000,
-  "role": "ROLE_STUDENT"
+  "sub": "guest",
+  "role": "ROLE_DINER"
 }</code></pre>
                   </div>
                 </div>
@@ -499,16 +479,16 @@
                 <div class="jwt-flow-screen">
                   <div class="jwt-flow-nodes-container">
                     <div class="jwt-node" id="jwt-node-client">
-                      <i class="fa-solid fa-laptop-code"></i>
-                      <span>Client</span>
+                      <i class="fa-solid fa-user"></i>
+                      <span>Customer</span>
                     </div>
                     <div class="jwt-flow-tunnel">
                       <div class="jwt-flow-packet" id="jwt-security-packet"><i class="fa-solid fa-shield-halved"></i></div>
-                      <span class="jwt-flow-status" id="lbl-jwt-flow-status">Handshake Tunnel</span>
+                      <span class="jwt-flow-status" id="lbl-jwt-flow-status">Security Corridor Gate</span>
                     </div>
                     <div class="jwt-node" id="jwt-node-server">
                       <i class="fa-solid fa-shield-halved"></i>
-                      <span>Spring Security</span>
+                      <span>Security Gate</span>
                     </div>
                   </div>
                 </div>
@@ -520,273 +500,87 @@
         </section>
 
         <!-- ===================================================================
-             TAB 4: MICROSERVICES COMMUNICATION MESH
+             TAB 4: LEARNING ACADEMY & CACHING
              =================================================================== -->
-        <section class="tab-pane" id="tab-microservices-lab">
-          <div class="microservices-layout">
+        <section class="tab-pane" id="tab-academy-lab">
+          <div class="academy-layout">
             
-            <!-- Control Panel -->
-            <div class="microservices-control glass-card">
+            <!-- Left panel: Caching & Graph -->
+            <div class="quiz-desk-box glass-card" style="flex: 1.1;">
               <div class="card-header">
-                <h3><i class="fa-solid fa-gamepad"></i> Distributed System Simulator</h3>
+                <h3><i class="fa-solid fa-bolt"></i> Caching Metaphor (The Dining Table Fruit Bowl)</h3>
               </div>
               <div class="card-body">
-                <p>Large cloud apps aren't single monoliths. They consist of dozens of isolated, specialized microservices that communicate over HTTP using REST endpoints.</p>
+                <p>When you want an apple, driving to the farm (Database) every single time takes hours. Instead, you put a **Fruit Bowl (Cache)** right on your kitchen counter. If the apple is in the bowl, you grab it instantly (Cache Hit). Only if the bowl is empty do you drive to the farm (Cache Miss), fetch it, and refill the bowl!</p>
                 
-                <div class="action-grid mt-1">
-                  <!-- Trigger order process -->
-                  <div class="action-card">
-                    <h4>Trigger Distributed Flow</h4>
-                    <p>Simulate placing an order on Swiggy and tracing service-to-service communication.</p>
-                    <button class="btn-fire-request mt-1" id="btn-ms-trigger">
-                      <i class="fa-solid fa-truck-fast"></i> Run Order Checkout
-                    </button>
-                  </div>
-
-                  <!-- Outage simulator -->
-                  <div class="action-card">
-                    <h4>Simulate Node Failures</h4>
-                    <p>Toggle the operational status of the Payment microservice to watch Circuit Breaker fallbacks.</p>
-                    <button class="btn-fire-request status-down mt-1" id="btn-ms-toggle-outage">
-                      <i class="fa-solid fa-plug-circle-xmark"></i> Outage: Payment Down
-                    </button>
-                  </div>
-                </div>
-
-                <div class="explanation-box mt-1">
-                  <h4><i class="fa-solid fa-circle-info"></i> Critical Cloud Architectures Taught:</h4>
-                  <ul class="micro-concepts-list">
-                    <li><strong>Service Discovery (Eureka)</strong>: Services automatically register their location.</li>
-                    <li><strong>Load Balancing</strong>: Traffic is divided across multiple instances of a service.</li>
-                    <li><strong>Circuit Breaker (Resilience4j)</strong>: If a service crashes, the app switches to an offline fallback instead of crashing entirely.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <!-- Visualization Canvas -->
-            <div class="microservices-canvas glass-card">
-              <div class="canvas-header">
-                <span><i class="fa-solid fa-network-wired"></i> Swiggy Cloud Service Mesh Network Map</span>
-                <span class="telemetry-badge" id="lbl-ms-telemetry">Telemetry: Standby</span>
-              </div>
-              
-              <div class="canvas-viewport">
-                <!-- Gateway Node -->
-                <div class="ms-node gateway-node" id="ms-node-gateway">
-                  <div class="ms-node-icon"><i class="fa-solid fa-door-open"></i></div>
-                  <span class="ms-node-title">API Gateway</span>
-                  <span class="ms-node-port">port: 8080</span>
-                </div>
-
-                <!-- Service 1: User -->
-                <div class="ms-node service-node" id="ms-node-user">
-                  <div class="ms-node-icon"><i class="fa-solid fa-user-gear"></i></div>
-                  <span class="ms-node-title">User Service</span>
-                  <span class="ms-node-port">port: 8081</span>
-                </div>
-
-                <!-- Service 2: Order -->
-                <div class="ms-node service-node" id="ms-node-order">
-                  <div class="ms-node-icon"><i class="fa-solid fa-receipt"></i></div>
-                  <span class="ms-node-title">Order Service</span>
-                  <span class="ms-node-port">port: 8082</span>
-                </div>
-
-                <!-- Service 3: Payment (Dual Instances for Load Balancing) -->
-                <div class="ms-instances-wrapper" id="ms-node-payment-group">
-                  <!-- Instance 1 -->
-                  <div class="ms-node service-node" id="ms-node-payment-1">
-                    <div class="ms-node-icon"><i class="fa-solid fa-credit-card"></i></div>
-                    <span class="ms-node-title">Payment Service (Node A)</span>
-                    <span class="ms-node-port">port: 8083</span>
-                  </div>
-                  <!-- Instance 2 -->
-                  <div class="ms-node service-node" id="ms-node-payment-2">
-                    <div class="ms-node-icon"><i class="fa-solid fa-credit-card"></i></div>
-                    <span class="ms-node-title">Payment Service (Node B)</span>
-                    <span class="ms-node-port">port: 8084</span>
-                  </div>
-                </div>
-
-                <!-- Service 4: Notification -->
-                <div class="ms-node service-node" id="ms-node-notification">
-                  <div class="ms-node-icon"><i class="fa-solid fa-bell"></i></div>
-                  <span class="ms-node-title">Notification Service</span>
-                  <span class="ms-node-port">port: 8085</span>
-                </div>
-
-                <!-- Eureka Registry -->
-                <div class="ms-node discovery-node" id="ms-node-eureka">
-                  <div class="ms-node-icon"><i class="fa-solid fa-compass"></i></div>
-                  <span class="ms-node-title">Eureka Service Registry</span>
-                  <span class="ms-node-port">port: 8761</span>
-                </div>
-
-                <!-- Custom visual connections and packets animated by javascript dynamic triggers -->
-                <svg class="ms-svg-connections">
-                  <!-- Dynamic SVG Line bindings will render here -->
-                </svg>
-                
-                <!-- Floating Animated Packets inside MS canvas -->
-                <div class="ms-packet-agent" id="ms-packet-a"><i class="fa-solid fa-envelope"></i></div>
-                <div class="ms-packet-agent" id="ms-packet-b"><i class="fa-solid fa-envelope"></i></div>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        <!-- ===================================================================
-             TAB 5: PERFORMANCE & DEVOPS VISUALIZER
-             =================================================================== -->
-        <section class="tab-pane" id="tab-performance-lab">
-          <div class="perf-devops-layout">
-            
-            <!-- Performance Lab: Caching vs Non-Caching -->
-            <div class="perf-caching-box glass-card">
-              <div class="card-header">
-                <h3><i class="fa-solid fa-bolt"></i> Database Caching Simulator (Spring Cache & Redis)</h3>
-              </div>
-              <div class="card-body">
-                <p>When millions of users request the Netflix home screen, reading from a physical MySQL database every time crashes the server. We keep a high-speed in-memory **Redis Cache** in front of our database.</p>
-                
-                <div class="cache-action-triggers">
-                  <button class="btn-cache-test test-db" id="btn-perf-test-db">
-                    <i class="fa-solid fa-database"></i> Query DIRECT Database (No Cache)
+                <div class="cache-action-triggers" style="margin-top: 1.5rem;">
+                  <button class="btn-cache-test test-db" id="btn-perf-test-db" style="padding: 12px 16px;">
+                    <i class="fa-solid fa-tractor"></i> Drive to the Farm (Direct DB Query)
                   </button>
-                  <button class="btn-cache-test test-redis" id="btn-perf-test-cache">
-                    <i class="fa-solid fa-bolt"></i> Query Cache (Redis Enabled)
+                  <button class="btn-cache-test test-redis" id="btn-perf-test-cache" style="padding: 12px 16px;">
+                    <i class="fa-solid fa-apple-whole"></i> Grab from Fruit Bowl (Redis Cache)
                   </button>
                 </div>
 
                 <!-- Visual Bar Graph Comparison -->
-                <div class="perf-results-graph">
-                  <h4>Response Telemetry Graph</h4>
-                  <div class="graph-row">
-                    <span class="graph-label">Direct DB Query:</span>
+                <div class="perf-results-graph" style="margin-top: 1.5rem;">
+                  <h4 style="margin-bottom: 0.8rem; font-size: 0.95rem; color: #a5b4fc;"><i class="fa-solid fa-stopwatch"></i> Speed Comparison Meter</h4>
+                  <div class="graph-row" style="margin-bottom: 0.8rem;">
+                    <span class="graph-label" style="width: 150px;">Direct DB Query:</span>
                     <div class="bar-track">
-                      <div class="bar-value fill-db" id="bar-perf-db"></div>
+                      <div class="bar-value fill-db" id="bar-perf-db" style="background: linear-gradient(90deg, #f43f5e, #be123c);"></div>
                     </div>
                     <span class="latency-text" id="txt-perf-db-latency">--- ms</span>
                   </div>
                   <div class="graph-row">
-                    <span class="graph-label">Redis Cache Hit:</span>
+                    <span class="graph-label" style="width: 150px;">Redis Cache:</span>
                     <div class="bar-track">
-                      <div class="bar-value fill-redis" id="bar-perf-cache"></div>
+                      <div class="bar-value fill-redis" id="bar-perf-cache" style="background: linear-gradient(90deg, #10b981, #047857);"></div>
                     </div>
                     <span class="latency-text" id="txt-perf-cache-latency">--- ms</span>
                   </div>
                 </div>
 
-                <div class="explanation-box mt-1" id="lbl-perf-analysis">
-                  Click either of the buttons to trigger queries. Notice how caching dramatically reduces latency (response speed) and spares the CPU databases workload.
+                <div class="explanation-box mt-2" id="lbl-perf-analysis" style="border-left-color: #a5b4fc; background: rgba(165, 180, 252, 0.05);">
+                  Click the buttons to query the data. Watch how reading from the in-memory Cache is 99% faster than starting database connections!
                 </div>
               </div>
             </div>
 
-            <!-- DevOps Pipeline Visualizer -->
-            <div class="devops-pipeline-box glass-card">
+            <!-- Right panel: Simple MCQ quiz & Interview flipcards -->
+            <div class="interview-prep-box glass-card" style="flex: 1.3;">
               <div class="card-header">
-                <h3><i class="fa-solid fa-truck-ramp-box"></i> Modern CI/CD DevOps Pipeline</h3>
+                <h3><i class="fa-solid fa-graduation-cap"></i> Checkpoint Quiz & Flashcards</h3>
               </div>
               <div class="card-body">
-                <p>How does a Spring Boot application move from your local computer (`localhost`) into production on AWS Cloud? Click on each phase below to witness the automated deployment steps.</p>
-                
-                <div class="devops-pipeline-container">
-                  <!-- Step 1 -->
-                  <div class="pipeline-step" data-step="local">
-                    <div class="step-num">1</div>
-                    <div class="step-icon"><i class="fa-solid fa-laptop-code"></i></div>
-                    <h4>Local Host</h4>
-                    <p>Developer writes code & runs locally on port 8080.</p>
-                  </div>
-                  
-                  <!-- Connection Arrow -->
-                  <div class="step-connector"><i class="fa-solid fa-angles-right"></i></div>
-
-                  <!-- Step 2 -->
-                  <div class="pipeline-step" data-step="docker">
-                    <div class="step-num">2</div>
-                    <div class="step-icon"><i class="fa-brands fa-docker"></i></div>
-                    <h4>Docker Container</h4>
-                    <p>Packages code + Java JVM into a secure isolated container.</p>
-                  </div>
-
-                  <!-- Connection Arrow -->
-                  <div class="step-connector"><i class="fa-solid fa-angles-right"></i></div>
-
-                  <!-- Step 3 -->
-                  <div class="pipeline-step" data-step="cicd">
-                    <div class="step-num">3</div>
-                    <div class="step-icon"><i class="fa-solid fa-code-commit"></i></div>
-                    <h4>CI/CD Pipeline</h4>
-                    <p>GitHub Actions auto-runs unit tests & builds production packages.</p>
-                  </div>
-
-                  <!-- Connection Arrow -->
-                  <div class="step-connector"><i class="fa-solid fa-angles-right"></i></div>
-
-                  <!-- Step 4 -->
-                  <div class="pipeline-step" data-step="aws">
-                    <div class="step-num">4</div>
-                    <div class="step-icon"><i class="fa-brands fa-aws"></i></div>
-                    <h4>AWS Cloud</h4>
-                    <p>Runs container inside EC2 servers serving millions worldwide.</p>
-                  </div>
-                </div>
-
-                <div class="pipeline-explanation-box mt-2" id="lbl-devops-explanation">
-                  **DevOps Tip**: Click on any of the four pipeline circles above to read its visual architectural role and check out modern deployment practices.
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        <!-- ===================================================================
-             TAB 6: LEARNING ACADEMY & INTERVIEW PREP
-             =================================================================== -->
-        <section class="tab-pane" id="tab-academy-lab">
-          <div class="academy-layout">
-            
-            <!-- Left panel: MCQ Quiz Desk -->
-            <div class="quiz-desk-box glass-card">
-              <div class="card-header">
-                <h3><i class="fa-solid fa-circle-check"></i> Checkpoint Quiz Challenge</h3>
-              </div>
-              <div class="card-body" id="quiz-workspace-panel">
                 
                 <!-- Dynamic Quiz Shell -->
-                <div class="quiz-container" id="active-quiz-block">
-                  <div class="quiz-status-header">
-                    <span class="quiz-question-counter" id="txt-quiz-counter">Question 1 of 5</span>
-                    <span class="quiz-score-badge">Score: <strong id="txt-quiz-score">0</strong></span>
+                <div class="quiz-container" id="active-quiz-block" style="background: rgba(255,255,255,0.02); padding: 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 1.5rem;">
+                  <div class="quiz-status-header" style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                    <span class="quiz-question-counter" id="txt-quiz-counter" style="font-weight: 600; color: #a5b4fc;">Question 1 of 5</span>
+                    <span class="quiz-score-badge">Diner Score: <strong id="txt-quiz-score">0</strong></span>
                   </div>
                   
-                  <h4 class="quiz-question-text" id="txt-quiz-question">What is the difference between @Controller and @RestController?</h4>
+                  <h4 class="quiz-question-text" id="txt-quiz-question" style="font-size: 1.05rem; margin-bottom: 15px;">What is the difference between @Controller and @RestController?</h4>
                   
-                  <div class="quiz-answers-list" id="list-quiz-answers">
-                    <!-- Loaded dynamically via js -->
-                    <button class="answer-option">Option A details</button>
-                    <button class="answer-option">Option B details</button>
+                  <div class="quiz-answers-list" id="list-quiz-answers" style="display: flex; flex-direction: column; gap: 8px;">
+                    <!-- Loaded dynamically -->
                   </div>
 
-                  <div class="quiz-action-footer">
+                  <div class="quiz-action-footer" style="text-align: right; margin-top: 10px;">
                     <button class="btn-fire-request hidden" id="btn-quiz-next">Next Question <i class="fa-solid fa-arrow-right"></i></button>
                   </div>
                 </div>
 
-                <!-- Quiz Completion screen (Hidden by default) -->
-                <div class="quiz-completion-screen hidden" id="quiz-complete-block">
-                  <i class="fa-solid fa-trophy trophy-icon"></i>
-                  <h3>Simulation Challenge Complete!</h3>
-                  <p>You have successfully processed all exam check-points.</p>
-                  <div class="quiz-stats-row">
+                <!-- Quiz Completion screen -->
+                <div class="quiz-completion-screen hidden" id="quiz-complete-block" style="text-align: center; padding: 20px 0;">
+                  <i class="fa-solid fa-trophy trophy-icon" style="font-size: 3rem; color: #fbbf24; margin-bottom: 10px; display: inline-block;"></i>
+                  <h3>Diner Graduation Complete!</h3>
+                  <p>You have mastered the foundational Spring Boot metaphors.</p>
+                  <div class="quiz-stats-row" style="display: flex; justify-content: center; gap: 15px; margin: 15px 0;">
                     <div class="stat-bubble">
                       <span class="stat-num" id="lbl-final-score">0/5</span>
-                      <span class="stat-label">Final Score</span>
+                      <span class="stat-label">Correct</span>
                     </div>
                     <div class="stat-bubble">
                       <span class="stat-num" id="lbl-completion-badge">None</span>
@@ -794,67 +588,41 @@
                     </div>
                   </div>
                   <button class="btn-fire-request" id="btn-quiz-restart">
-                    <i class="fa-solid fa-rotate-left"></i> Retake Simulation
+                    <i class="fa-solid fa-rotate-left"></i> Take Quiz Again
                   </button>
                 </div>
 
-              </div>
-            </div>
-
-            <!-- Right panel: Technical Interview Prep Deck -->
-            <div class="interview-prep-box glass-card">
-              <div class="card-header">
-                <h3><i class="fa-solid fa-comments"></i> Spring Boot Technical Interview Desk</h3>
-              </div>
-              <div class="card-body">
-                <p>Click on any flashcard below to flip and inspect the high-yield answer asked by top technical screeners.</p>
-                
-                <div class="flashcards-container">
-                  <!-- Card 1 -->
-                  <div class="flashcard">
+                <!-- Flashcard Panel -->
+                <div class="flashcards-container" style="display: grid; grid-template-columns: 1fr; gap: 12px;">
+                  <div class="flashcard" style="height: 120px;">
                     <div class="flashcard-inner">
-                      <div class="card-front">
-                        <span class="card-topic">Architecture</span>
-                        <h3>What is the role of dispatcher servlet?</h3>
+                      <div class="card-front" style="padding: 15px;">
+                        <span class="card-topic">DispatcherServlet Metaphor</span>
+                        <h3 style="font-size: 0.95rem;">Who is the DispatcherServlet in our Restaurant?</h3>
                         <div class="card-hint"><i class="fa-solid fa-rotate"></i> Tap to flip</div>
                       </div>
-                      <div class="card-back">
-                        <h3>The DispatcherServlet</h3>
-                        <p>It is the core **Front Controller** in Spring MVC. It intercepts every incoming HTTP request and acts as a traffic officer, coordinating controllers, URL mappings, and resolvers to find and execute the correct endpoint.</p>
+                      <div class="card-back" style="padding: 15px;">
+                        <h3 style="font-size: 0.95rem; color: #a5b4fc; margin-bottom: 5px;">The Front Desk Host</h3>
+                        <p style="font-size: 0.8rem; line-height: 1.4;">It stands at the restaurant door and coordinates all incoming orders. It guides the customer request to the correct waiter controller.</p>
                       </div>
                     </div>
                   </div>
 
-                  <!-- Card 2 -->
-                  <div class="flashcard">
+                  <div class="flashcard" style="height: 120px;">
                     <div class="flashcard-inner">
-                      <div class="card-front">
-                        <span class="card-topic">Security</span>
-                        <h3>Why are REST APIs stateless?</h3>
+                      <div class="card-front" style="padding: 15px;">
+                        <span class="card-topic">Stateless APIs</span>
+                        <h3 style="font-size: 0.95rem;">Why is a REST API called "Stateless"?</h3>
                         <div class="card-hint"><i class="fa-solid fa-rotate"></i> Tap to flip</div>
                       </div>
-                      <div class="card-back">
-                        <h3>Stateless REST APIs</h3>
-                        <p>Stateless means the server **never stores browser sessions**. Every request contains all necessary credentials (like JWT inside header). This allows the application to easily scale across millions of servers without session syncing lag.</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Card 3 -->
-                  <div class="flashcard">
-                    <div class="flashcard-inner">
-                      <div class="card-front">
-                        <span class="card-topic">Performance</span>
-                        <h3>Explain Lazy Loading vs Eager Loading?</h3>
-                        <div class="card-hint"><i class="fa-solid fa-rotate"></i> Tap to flip</div>
-                      </div>
-                      <div class="card-back">
-                        <h3>Hibernate Loading</h3>
-                        <p>**Eager Loading** retrieves a record AND all related records instantly in one massive query. **Lazy Loading** delays fetching child data until your Java code explicitly calls it, boosting database efficiency.</p>
+                      <div class="card-back" style="padding: 15px;">
+                        <h3 style="font-size: 0.95rem; color: #a5b4fc; margin-bottom: 5px;">No Session Records</h3>
+                        <p style="font-size: 0.8rem; line-height: 1.4;">Because the server does not remember your face. Each customer request must present their ticket (JWT) every single time, keeping the server fast.</p>
                       </div>
                     </div>
                   </div>
                 </div>
+
               </div>
             </div>
 

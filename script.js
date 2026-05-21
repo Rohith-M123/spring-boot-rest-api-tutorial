@@ -1,18 +1,17 @@
 /* ==========================================================================
-   ADVANCED BACKEND SIMULATION LAB ENGINE
-   Governs interactive Postman playground, MySQL tables, JWT validators,
-   Microservice network flows, Caching latencies, and Academy graders.
+   SPRING DINER SIMULATION LAB - INTERACTIVE JS ENGINE
+   Translates complex Spring Boot architectures into simple restaurant analogies.
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Global sound triggers wrapped to bypass standard browser restrictions
+  // Global sound triggers
   function playSystemSound(soundId) {
     try {
       const snd = document.getElementById(soundId);
       if (snd) {
         snd.currentTime = 0;
-        snd.play().catch(() => {/* Ignore browser audio constraints */});
+        snd.play().catch(() => {/* Ignore browser audio rules */});
       }
     } catch (e) {
       console.warn("Audio play blocked: ", e);
@@ -30,13 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const txtOverallProgress = document.getElementById('txt-overall-progress');
   const checkpointIndicator = document.getElementById('checkpoint-indicator');
 
-  // Track achievements/states to feed progress
   const simulationStates = {
     apiRunCount: 0,
     annotationExplored: {},
     jwtGenerated: false,
     jwtAuthAttempted: false,
-    msTriggered: false,
     perfTested: false,
     quizScore: 0,
     quizFinished: false,
@@ -45,28 +42,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const tabMetadata = {
     'api-lab': {
-      title: "API & Architecture Lab",
-      desc: "Interactive developer workshop visualizing layered REST API execution pipelines."
+      title: "Diner Flow (REST API)",
+      desc: "Witness how an API works using the simple analogy of a restaurant diner!"
     },
     'annotation-lab': {
-      title: "Spring Boot Annotation Explorer",
-      desc: "Learn core Spring annotations, dependencies injection, and backend design systems."
+      title: "Spring Kitchen Annotations",
+      desc: "Learn Spring's special code stickers using helpful everyday kitchen roles."
     },
     'jwt-lab': {
-      title: "JWT Security Sandbox",
-      desc: "Analyse stateless session tokens, inspect base64 components, and test locked paths."
-    },
-    'microservices-lab': {
-      title: "Microservice Mesh Arena",
-      desc: "Trace distributed cloud transactions, service discovery registries, and resilience failovers."
-    },
-    'performance-lab': {
-      title: "Performance & DevOps Visualizer",
-      desc: "Witness Redis in-memory caching speeds and trace production CI/CD pipelines."
+      title: "Ticket Security (JWT Sandbox)",
+      desc: "Understand secure, stateless API logins using stamped VIP paper wristbands."
     },
     'academy-lab': {
-      title: "Academy & Quiz Desk",
-      desc: "Test your backend architectural knowledge and secure certified achievement badges."
+      title: "Academy & Caching Desk",
+      desc: "Simulate fast fruit-bowl caching speed and graduate with your final Diner check-points."
     }
   };
 
@@ -97,65 +86,60 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Telemetry Progress system
+  // Simple progression scorer
   function updateProgressTelemetry() {
     let progress = 0;
     
-    // API playground completions (15%)
-    if (simulationStates.apiRunCount > 0) progress += 15;
+    // Diner Playground presets executed (25%)
+    if (simulationStates.apiRunCount > 0) progress += 25;
     
-    // Annotation explorations (20%)
+    // Stickers explored (25%)
     const exploredCount = Object.keys(simulationStates.annotationExplored).length;
-    progress += Math.min(exploredCount * 2, 20);
+    progress += Math.min(exploredCount * 4, 25);
 
-    // JWT security completion (20%)
-    if (simulationStates.jwtGenerated) progress += 10;
-    if (simulationStates.jwtAuthAttempted) progress += 10;
+    // Security Sandbox tests completed (25%)
+    if (simulationStates.jwtGenerated) progress += 12;
+    if (simulationStates.jwtAuthAttempted) progress += 13;
 
-    // Microservices and Performance completion (20%)
-    if (simulationStates.msTriggered) progress += 10;
+    // Caching & Quiz completed (25%)
     if (simulationStates.perfTested) progress += 10;
-
-    // Quiz completion (25%)
     if (simulationStates.quizFinished) {
-      progress += 25;
+      progress += 15;
     } else {
-      progress += Math.min(simulationStates.quizScore * 4, 20);
+      progress += Math.min(simulationStates.quizScore * 3, 12);
     }
 
-    // Update HTML elements
     barOverallProgress.style.width = `${progress}%`;
     txtOverallProgress.innerText = `${progress}%`;
 
-    // Dynamic Class Rank Title
+    // Dynamic Beginner Ranks
     if (progress < 30) {
-      checkpointIndicator.innerHTML = '<i class="fa-solid fa-flag"></i> Novice Class';
-    } else if (progress < 60) {
-      checkpointIndicator.innerHTML = '<i class="fa-solid fa-medal"></i> Associate Engineer';
+      checkpointIndicator.innerHTML = '<i class="fa-solid fa-baby"></i> Diner Novice';
+    } else if (progress < 65) {
+      checkpointIndicator.innerHTML = '<i class="fa-solid fa-cookie"></i> Apprentice Cook';
     } else if (progress < 90) {
-      checkpointIndicator.innerHTML = '<i class="fa-solid fa-shield-halved"></i> Principal Developer';
+      checkpointIndicator.innerHTML = '<i class="fa-solid fa-fire-burner"></i> Kitchen Manager';
     } else {
-      checkpointIndicator.innerHTML = '<i class="fa-solid fa-crown"></i> Enterprise Architect';
+      checkpointIndicator.innerHTML = '<i class="fa-solid fa-crown"></i> Diner Master Chef';
     }
 
-    // Unlock badges
     checkAndUnlockBadges(progress);
   }
 
   function checkAndUnlockBadges(progress) {
-    // Badge 1: Seedling (Novice)
+    // 1. Helper Badge
     if (simulationStates.quizScore >= 1 && !simulationStates.unlockedBadges.has('novice')) {
       unlockBadge('novice');
     }
-    // Badge 2: REST Master
+    // 2. Manager Badge
     if (simulationStates.apiRunCount >= 3 && !simulationStates.unlockedBadges.has('rest')) {
       unlockBadge('rest');
     }
-    // Badge 3: Security Officer
-    if (simulationStates.jwtAuthAttempted && simulationStates.unlockedBadges.has('novice') && !simulationStates.unlockedBadges.has('security')) {
+    // 3. VIP Badge
+    if (simulationStates.jwtAuthAttempted && !simulationStates.unlockedBadges.has('security')) {
       unlockBadge('security');
     }
-    // Badge 4: Master Crown
+    // 4. Crown Badge
     if (progress >= 95 && simulationStates.quizScore >= 4 && !simulationStates.unlockedBadges.has('master')) {
       unlockBadge('master');
     }
@@ -173,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ==========================================
-     2. MODULE 1: API PLAYGROUND ENGINE (POSTMAN + DB + CONSOLE)
+     2. MODULE 1: DINER FLOW SIMULATOR (POSTMAN & RESTAURANT WORKERS)
      ========================================== */
   const btnPresetList = document.querySelectorAll('.btn-preset');
   const selHttpMethod = document.getElementById('sel-http-method');
@@ -187,7 +171,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const lblTerminalStatus = document.getElementById('lbl-terminal-status');
   const lblArchitectureExplanation = document.getElementById('lbl-architecture-explanation');
 
-  // Presets mapping dictionary
   const playgroundPresets = {
     'insta-feed': {
       url: 'https://api.instagram.com/v1/feed?userId=2059',
@@ -195,28 +178,26 @@ document.addEventListener('DOMContentLoaded', () => {
       dbAction: 'SELECT',
       dbTargetRow: 101,
       logs: [
-        '2026-05-21 08:12:05.102 INFO  [dispatch-servlet] DispatcherServlet initialized.',
-        '2026-05-21 08:12:05.105 INFO  [dispatch-servlet] GET "/v1/feed" matched to InstagramController.getFeed()',
-        '2026-05-21 08:12:05.110 DEBUG [insta-service] Validating Instagram API user authentication token...',
-        '2026-05-21 08:12:05.115 DEBUG [insta-repository] Executing: SELECT * FROM posts p WHERE p.user_id = 2059 ORDER BY p.created_at DESC;',
-        '2026-05-21 08:12:05.120 INFO  [jackson-converter] Serializing InstagramFeedResponse object into JSON body...'
+        'INFO  [DispatcherServlet] GET "/v1/feed" matched to InstagramController (Waiter greeted client & read the Instagram order request)',
+        'DEBUG [SecurityFilter] API Key verified successfully (Security Guard checked user VIP card)',
+        'INFO  [RestController] Extracting parameters: userId=2059 (Waiter writes down your table number)',
+        'INFO  [InstagramService] Fetching posts feed calculations (Chef starts executing the Instagram feed recipe)',
+        'DEBUG [InstagramRepository] SQL Executed: SELECT * FROM posts p WHERE p.user_id = 2059 (Pantry Assistant grabs raw ingredients from fridge)',
+        'INFO  [JacksonSerializer] Mapping Java to JSON string response (Waiter plates the meal in clean bowls)'
       ],
       json: `{
   "userId": 2059,
-  "username": "travel_guru",
-  "feed_items_count": 3,
-  "posts": [
+  "username": "travel_dave",
+  "feed_items": [
     {
       "post_id": 402,
-      "caption": "Exploring the futuristic matrix visualizer! 🤖",
-      "image_url": "sandbox_code.jpg",
-      "likes": 1243
+      "caption": "Exploring beautiful mountain peaks! 🏔️",
+      "likes_count": 890
     },
     {
       "post_id": 399,
-      "caption": "Spring Boot makes REST APIs look clean! 🍃",
-      "image_url": "coffee_coding.jpg",
-      "likes": 842
+      "caption": "Writing code in a cozy cafe ☕",
+      "likes_count": 1240
     }
   ]
 }`,
@@ -226,48 +207,45 @@ document.addEventListener('DOMContentLoaded', () => {
     'swiggy-order': {
       url: 'https://api.swiggy.com/v1/orders/create',
       method: 'POST',
-      body: `{\n  "restaurantId": 1403,\n  "items": [\n    {"id": 4, "name": "Butter Naan", "qty": 2},\n    {"id": 9, "name": "Chicken Tikka", "qty": 1}\n  ],\n  "total": 540.00\n}`,
+      body: `{\n  "itemName": "Double Cheese Burger",\n  "price": 9.99,\n  "customer": "sarah_k"\n}`,
       dbAction: 'INSERT',
       dbTargetRow: 104,
       logs: [
-        '2026-05-21 08:12:10.220 INFO  [dispatch-servlet] POST "/v1/orders/create" matched to SwiggyOrderController.createOrder()',
-        '2026-05-21 08:12:10.225 DEBUG [jackson-converter] De-serializing JSON Request Body into OrderDto class...',
-        '2026-05-21 08:12:10.232 INFO  [order-service] Starting payment gateway handshake balance verification...',
-        '2026-05-21 08:12:10.240 DEBUG [order-repository] Executing: INSERT INTO orders (customer, item_name, amount_inr, status) VALUES ("guest_user", "Swiggy Dinner", 540.00, "PENDING");',
-        '2026-05-21 08:12:10.245 INFO  [notification-service] Triggered async SMS order notification...'
+        'INFO  [DispatcherServlet] POST "/v1/orders/create" matched to SwiggyOrderController (Waiter reads order card)',
+        'DEBUG [JacksonParser] Parsing request body JSON into Order object (Waiter translates customer details for chef)',
+        'INFO  [OrderService] Cooking logic started. Checking price minimums (Chef checks food expiration dates)',
+        'DEBUG [OrderRepository] SQL Executed: INSERT INTO orders (customer, item, price) VALUES ("sarah_k", "Burger", 9.99) (Pantry Assistant adds a new bag to fridge storage)',
+        'INFO  [NotificationService] SMS Invoice triggered asynchronously (Diner rings cash register bell)'
       ],
       json: `{
   "orderId": 104,
-  "restaurant": "Tandoori Palace",
-  "status": "ORDER_PLACED",
-  "totalPrice": 540.00,
-  "deliveryPartner": "Rahul Kumar",
-  "estimatedDeliveryMinutes": 32
+  "status": "ORDER_COOKING",
+  "estimatedDeliveryMinutes": 25,
+  "totalPrice": 9.99
 }`,
       responseStatus: '201 Created',
       statusClass: 'created'
     },
     'amazon-search': {
-      url: 'https://api.amazon.com/v1/products/search?query=headphones',
+      url: 'https://api.amazon.com/v1/products/search?query=mouse',
       method: 'GET',
       dbAction: 'SELECT',
       dbTargetRow: 103,
       logs: [
-        '2026-05-21 08:12:15.805 INFO  [dispatch-servlet] GET "/v1/products/search" matched to AmazonSearchController.search()',
-        '2026-05-21 08:12:15.812 DEBUG [search-service] Routing query request to Elasticsearch Product Catalog Index...',
-        '2026-05-21 08:12:15.820 DEBUG [search-repository] Executing: SELECT * FROM products p WHERE p.name LIKE "%headphones%";',
-        '2026-05-21 08:12:15.828 INFO  [jackson-converter] Mapping ProductList to JSON array...'
+        'INFO  [DispatcherServlet] GET "/v1/products/search" matched to ProductController (Waiter routes product request)',
+        'INFO  [ProductService] Searching warehouse catalog directories (Chef pulls catalog maps)',
+        'DEBUG [ProductRepository] SQL Executed: SELECT * FROM products WHERE name LIKE "%mouse%" (Pantry Assistant searches shelves)',
+        'INFO  [JacksonSerializer] Binders packaging details array (Waiter plates items neatly)'
       ],
       json: `{
-  "query": "headphones",
-  "results_found": 1,
-  "products": [
+  "query": "mouse",
+  "items_found": 1,
+  "results": [
     {
       "productId": 103,
-      "name": "Bose QuietComfort 45",
-      "price_usd": 329.00,
-      "rating": 4.8,
-      "stock": 14
+      "name": "Wireless Mouse",
+      "price": 45.00,
+      "stock_count": 8
     }
   ]
 }`,
@@ -277,82 +255,25 @@ document.addEventListener('DOMContentLoaded', () => {
     'whatsapp-send': {
       url: 'https://api.whatsapp.com/v1/messages/send',
       method: 'POST',
-      body: `{\n  "recipient": "+919876543210",\n  "message": "Hey! Let's pair-code in Spring Boot! 🚀"\n}`,
+      body: `{\n  "to": "+12345",\n  "message": "Hi, let's learn Spring Boot! 🚀"\n}`,
       dbAction: 'INSERT',
       dbTargetRow: 105,
       logs: [
-        '2026-05-21 08:12:20.402 INFO  [dispatch-servlet] POST "/v1/messages/send" matched to WhatsappController.sendMessage()',
-        '2026-05-21 08:12:20.410 DEBUG [message-service] Checking cell connection signal packet validation status...',
-        '2026-05-21 08:12:20.415 DEBUG [message-repository] Executing: INSERT INTO message_logs (recipient, payload, timestamp) VALUES ("+919876543210", "Hey! Lets pair-code...", NOW());',
-        '2026-05-21 08:12:20.420 INFO  [push-notifier] Transmitting data payload to client mobile gateway...'
+        'INFO  [DispatcherServlet] POST "/v1/messages/send" matched to WhatsappController (Waiter captures message)',
+        'INFO  [MessageService] Validating phone carrier routing keys (Chef checks delivery routes)',
+        'DEBUG [MessageRepository] SQL Executed: INSERT INTO messages (recipient, text) VALUES ("+12345", "Hi...") (Pantry Assistant stores logs in box)',
+        'INFO  [PushGateway] Transmitting packet to cellular nodes (Diner hands plate to courier)'
       ],
       json: `{
-  "messageId": "WA-88492049",
-  "status": "SENT_TO_GATEWAY",
-  "recipient": "+919876543210",
-  "timestamp": "2026-05-21T08:12:20.420Z"
+  "messageId": "MSG-774920",
+  "status": "DELIVERED_TO_PHONE",
+  "to": "+12345"
 }`,
       responseStatus: '201 Created',
       statusClass: 'created'
-    },
-    'netflix-rec': {
-      url: 'https://api.netflix.com/v1/users/994/recommendations',
-      method: 'GET',
-      dbAction: 'SELECT',
-      dbTargetRow: null,
-      logs: [
-        '2026-05-21 08:12:25.101 INFO  [dispatch-servlet] GET "/v1/users/{id}/recommendations" matched to NetflixRecController.getRecommendations()',
-        '2026-05-21 08:12:25.105 DEBUG [cache-service] Redis Check: checking cache key user:994:recommendations...',
-        '2026-05-21 08:12:25.110 INFO  [cache-service] Cache Hit! Skipping database query entirely. Highly optimized!',
-        '2026-05-21 08:12:25.115 INFO  [jackson-converter] Formulating payload JSON...'
-      ],
-      json: `{
-  "userId": 994,
-  "cache_hit": true,
-  "recommended_shows": [
-    {
-      "showId": 8839,
-      "title": "Stranger Things",
-      "matchPercentage": 98,
-      "genre": "Sci-Fi"
-    },
-    {
-      "showId": 4022,
-      "title": "Black Mirror",
-      "matchPercentage": 95,
-      "genre": "Anthology"
-    }
-  ]
-}`,
-      responseStatus: '200 OK',
-      statusClass: 'ok'
-    },
-    'upi-pay': {
-      url: 'https://api.upi.pay/v1/transactions/transfer',
-      method: 'POST',
-      body: `{\n  "payeeVpa": "merchant@ybl",\n  "amount": 2500.00,\n  "remarks": "API Platform Upgrade"\n}`,
-      dbAction: 'INSERT',
-      dbTargetRow: 106,
-      logs: [
-        '2026-05-21 08:12:30.902 INFO  [dispatch-servlet] POST "/v1/transactions/transfer" matched to UpiPaymentController.transfer()',
-        '2026-05-21 08:12:30.910 DEBUG [security-filter] Decrypting encrypted banking credentials payload...',
-        '2026-05-21 08:12:30.918 INFO  [bank-handshake] Contacting central NPCI clearing network...',
-        '2026-05-21 08:12:30.925 DEBUG [upi-repository] Executing: INSERT INTO ledgers (payee, amount, status) VALUES ("merchant@ybl", 2500.00, "SUCCESS");',
-        '2026-05-21 08:12:30.932 INFO  [jackson-converter] Constructing transaction response packet...'
-      ],
-      json: `{
-  "transactionReference": "TXN-994829104",
-  "status": "PAYMENT_SUCCESSFUL",
-  "amount": 2500.00,
-  "payee": "merchant@ybl",
-  "timestamp": "2026-05-21T08:12:30.932Z"
-}`,
-      responseStatus: '200 OK',
-      statusClass: 'ok'
     }
   };
 
-  // Autotyped Spring Boot Startup Banner
   const springBootStartupText = `
   .   ____          _            __ _ _
  /\\\\ / ___'_ __ _ _(_)_ __  __ _ \\ \\ \\ \\
@@ -360,22 +281,18 @@ document.addEventListener('DOMContentLoaded', () => {
  \\\\/  ___)| |_)| | | | | || (_| |  ) ) ) )
   '  |____| .__|_| |_|_| |__\\__, | / / / /
  =========|_|==============|___/=/_/_/_/
- :: Spring Boot ::        (v3.2.0-RELEASE)
+ :: Spring Boot Diner :: (v3.2.0-RELEASE)
 
-2026-05-21 08:10:35.002 INFO  [main] Starting BackendSimulationPlatformApplication using Java 21...
-2026-05-21 08:10:35.005 INFO  [main] Tomcat initialized on port(s): 8080 (http)
-2026-05-21 08:10:35.012 INFO  [main] Hibernate JPA Engine Loaded. Mapping dialect: MySQL8Dialect
-2026-05-21 08:10:35.500 INFO  [main] Application fully booted and ready. Standing by for REST requests...
+INFO  [main] Starting SpringDinerPlatformApplication (Tomcat booted on port 8080)
+INFO  [main] Hibernate JPA Engine mapped successfully to 'mock_restaurant_db'
+INFO  [main] Server fully ready! Standing by for customer orders...
 `;
 
-  // Autotype logs to terminal console
   function printStartupBanner() {
     terminalLogOutput.innerHTML = springBootStartupText;
   }
-
   printStartupBanner();
 
-  // Preset loading handler
   btnPresetList.forEach(btn => {
     btn.addEventListener('click', () => {
       btnPresetList.forEach(b => b.classList.remove('active'));
@@ -391,7 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
     selHttpMethod.value = config.method;
     iptPostmanUrl.value = config.url;
 
-    if (config.method === 'POST' || config.method === 'PUT') {
+    if (config.method === 'POST') {
       postmanBodyWrapper.classList.remove('hidden');
       txtPostmanBody.value = config.body || '';
     } else {
@@ -400,81 +317,63 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Handle manual dropdown switching
+  // Handle manual dropdown switches
   selHttpMethod.addEventListener('change', () => {
-    if (selHttpMethod.value === 'POST' || selHttpMethod.value === 'PUT') {
+    if (selHttpMethod.value === 'POST') {
       postmanBodyWrapper.classList.remove('hidden');
-      if (!txtPostmanBody.value) txtPostmanBody.value = '{\n  "name": "example_item",\n  "qty": 1\n}';
+      if (!txtPostmanBody.value) txtPostmanBody.value = '{\n  "itemName": "New Dish",\n  "price": 5.99\n}';
     } else {
       postmanBodyWrapper.classList.add('hidden');
     }
   });
 
-  // Flow telemetries dictionary
-  const layerExplanations = {
-    'layer-client': '👉 **1. Client**: Mobile / Web UI triggers an HTTP REST request (like a customer placing a menu order).',
-    'layer-gateway': '👉 **2. API Gateway**: The front firewall checks authorization tokens, logs API rates, and routes calls.',
-    'layer-controller': '👉 **3. @RestController**: Receives matching routes (like a waiter taking an order to the kitchen) and processes parameters.',
-    'layer-service': '👉 **4. @Service**: The chef of the backend executes algorithms, calculations, checks permissions, and manages states.',
-    'layer-repository': '👉 **5. @Repository**: Generates Hibernate/JPA queries to write to or retrieve from database tables.',
-    'layer-database': '👉 **6. MySQL Database**: Reads or writes files and completes persistence cycles.'
-  };
-
   const layers = document.querySelectorAll('.arch-layer');
   layers.forEach(ly => {
     ly.addEventListener('mouseenter', () => {
-      const id = ly.id;
-      lblArchitectureExplanation.innerHTML = `<strong>${ly.querySelector('.layer-title').innerText}</strong>:<br>${ly.getAttribute('data-layer-info')}`;
+      lblArchitectureExplanation.innerHTML = `<strong>${ly.querySelector('.layer-title').innerText} (${ly.querySelector('.layer-badge').innerText})</strong>:<br>${ly.getAttribute('data-layer-info')}`;
     });
     ly.addEventListener('mouseleave', () => {
-      lblArchitectureExplanation.innerHTML = `Click "Send" in the playground to watch the packet travel through all 6 architectural tiers in real-time. Hover over a tier to read its specific duty.`;
+      lblArchitectureExplanation.innerHTML = `Click "Send Request" above to watch the order packet travel from the Customer to the Kitchen Fridge. Hover over any worker node to learn what they do.`;
     });
   });
 
-  // Main Pipeline Animator Trigger
+  // Diner Pipeline Animator
   btnPostmanSend.addEventListener('click', () => {
     if (btnPostmanSend.disabled) return;
     
     btnPostmanSend.disabled = true;
     playSystemSound('snd-click');
 
-    // Find if a preset matched
     const presetKey = document.querySelector('.btn-preset.active')?.getAttribute('data-preset') || 'insta-feed';
     const config = playgroundPresets[presetKey];
 
-    // Wipe logs and display "Inbound Handshake Request"
-    terminalLogOutput.innerHTML = `[REST API REQUEST RECEIVED] ---> Initiating Handshake...\n`;
+    terminalLogOutput.innerHTML = `[DINER ORDER PLACED] ---> Waiter starting request pipeline...\n`;
     lblTerminalStatus.innerText = 'WAITING';
     lblTerminalStatus.className = 'console-telemetry-badge';
 
-    // Step 1: Forward flow
     let step = 0;
     const totalSteps = 6;
-    const stepDuration = 850; // ms
+    const stepDuration = 800; // ms
 
     function animateStep() {
       if (step < totalSteps) {
-        // Glimmer active layer
         layers.forEach(ly => ly.classList.remove('active-glow'));
         const activeLayerId = `layer-${['client', 'gateway', 'controller', 'service', 'repository', 'database'][step]}`;
         const targetLayer = document.getElementById(activeLayerId);
         targetLayer.classList.add('active-glow');
         
-        // Print corresponding log in terminal console
         if (config.logs[step]) {
           terminalLogOutput.innerHTML += `${config.logs[step]}\n`;
+          terminalLogOutput.scrollTop = terminalLogOutput.scrollHeight;
         }
 
-        // Animate packet along wire
         if (step < totalSteps - 1) {
           const packet = document.getElementById(`packet-${step + 1}`);
           packet.className = 'arch-packet anim-forward';
-          setTimeout(() => {
-            packet.className = 'arch-packet';
-          }, stepDuration);
+          setTimeout(() => { packet.className = 'arch-packet'; }, stepDuration);
         }
 
-        // Database row highlight updates on step 5 (Database Layer reached!)
+        // Database row highlight updates on step 5 (Database fridge reached!)
         if (step === 5) {
           executeVisualDatabaseOperation(config);
         }
@@ -482,12 +381,10 @@ document.addEventListener('DOMContentLoaded', () => {
         step++;
         setTimeout(animateStep, stepDuration);
       } else {
-        // Step 2: Backward Flow (Returning response back)
-        terminalLogOutput.innerHTML += `2026-05-21 08:12:35.990 INFO  [dispatch-servlet] Returning response with status: ${config.responseStatus}\n`;
-        
+        // Return food back to user!
+        terminalLogOutput.innerHTML += `INFO  [DispatcherServlet] Returning response to Customer with status: ${config.responseStatus}\n`;
         layers.forEach(ly => ly.classList.remove('active-glow'));
         
-        // Type write JSON response at the bottom
         typeWriteConsoleJson(config.json, () => {
           lblTerminalStatus.innerText = config.responseStatus;
           lblTerminalStatus.className = `console-telemetry-badge ${config.statusClass}`;
@@ -505,11 +402,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function executeVisualDatabaseOperation(config) {
     if (!config.dbTargetRow) {
-      dbActionStatus.innerText = 'SELECT (CACHE SKIP)';
+      dbActionStatus.innerText = 'SELECT';
       return;
     }
 
-    dbActionStatus.innerText = `${config.dbAction} TRIGGERED`;
+    dbActionStatus.innerText = `${config.dbAction} COMPLETE`;
 
     if (config.dbAction === 'SELECT') {
       const row = document.querySelector(`tr[data-row-id="${config.dbTargetRow}"]`);
@@ -518,26 +415,21 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => { row.className = ''; }, 2000);
       }
     } else if (config.dbAction === 'INSERT') {
-      // Create new visual row
+      // Create new visual database row
       const newRow = document.createElement('tr');
       newRow.setAttribute('data-row-id', config.dbTargetRow);
       newRow.className = 'highlight-db-insert';
       
       let customer = 'guest_user';
-      let item = 'Swiggy Dinner';
-      let val = '540.00';
-      let status = 'PENDING';
+      let item = 'Swiggy Burger';
+      let val = '$9.99';
+      let status = 'PREPARING';
 
       if (config.dbTargetRow === 105) {
-        customer = 'mollie_dev';
-        item = 'WhatsApp Message Payload';
-        val = '0.00';
-        status = 'ACTIVE';
-      } else if (config.dbTargetRow === 106) {
-        customer = 'merchant_pay';
-        item = 'UPI Transfer';
-        val = '2500.00';
-        status = 'COMPLETED';
+        customer = 'sam_chat';
+        item = '💬 WhatsApp API Payload';
+        val = '$0.00';
+        status = 'SERVED';
       }
 
       newRow.innerHTML = `
@@ -556,7 +448,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function typeWriteConsoleJson(text, callback) {
     const lines = text.split('\n');
     let idx = 0;
-    terminalLogOutput.innerHTML += `\n[RESPONSE BODY (JSON)]:\n`;
+    terminalLogOutput.innerHTML += `\n[MEAL SERVED (RESPONSE JSON)]:\n`;
 
     const interval = setInterval(() => {
       if (idx < lines.length) {
@@ -567,17 +459,18 @@ document.addEventListener('DOMContentLoaded', () => {
           .replace(/: (true|false)/g, ': <span class="keyword">$1</span>');
 
         terminalLogOutput.innerHTML += `${lineHTML}\n`;
+        terminalLogOutput.scrollTop = terminalLogOutput.scrollHeight;
         idx++;
       } else {
         clearInterval(interval);
         if (callback) callback();
       }
-    }, 45); // Line speed
+    }, 50); // Speed line-by-line
   }
 
 
   /* ==========================================
-     3. MODULE 2: SPRING BOOT ANNOTATION EXPLORER
+     3. MODULE 2: KITCHEN ANNOTATIONS
      ========================================== */
   const annoButtons = document.querySelectorAll('.annotation-btn');
   const detailsPanel = document.getElementById('annotation-details-content');
@@ -592,134 +485,97 @@ document.addEventListener('DOMContentLoaded', () => {
   const annotationsDictionary = {
     'restcontroller': {
       title: '@RestController',
-      category: 'Controller Layer',
-      why: "Combines @Controller and @ResponseBody. Tells Spring Boot that this class is an HTTP endpoint. It bypasses classic HTML rendering and directly maps the returned Java object into lightweight JSON strings.",
-      analogy: "The head waiter standing at a restaurant lobby door. When customers walk in requesting specific items, the waiter handles requests directly and brings plates straight back rather than giving directions to the kitchen.",
-      interview: "Question: 'What is inside @RestController?' Answer: 'It is a composite annotation combining @Controller (registering the class as a bean) and @ResponseBody (which intercepts return objects and maps them into JSON using Jackson).'",
+      category: 'Ordering System (HTTP)',
+      why: "Tells Spring Boot: 'This class represents an active waiter'. It intercepts custom REST requests (like GET/POST) and serves data directly back in standard lightweight formats (JSON).",
+      analogy: "<strong>The Restaurant Waiter</strong>. The waiter stands right at the front counter. When you request a menu item, they fetch it and bring you the dish immediately on a clean tray, without forcing you to go visit the kitchen chefs.",
+      interview: "Question: What does @RestController do? Answer: It tells Spring Boot that this class is an API entry point, returning raw data (JSON) directly instead of compiling old web pages.",
       code: `@RestController
-public class OrderController {
-    // Endpoints go here...
+public class BurgerController {
+    // Waiter handles customer orders inside this class!
 }`
     },
     'getmapping': {
       title: '@GetMapping',
-      category: 'HTTP Requests Mapping',
-      why: "Maps HTTP GET requests to specific Java methods. Used exclusively for reading/fetching data from database records without modifying server state.",
-      analogy: "A restaurant's menu board. When you look at the board, you are retrieving prices and ingredients (GET), but you aren't changing anything inside the restaurant's inventory.",
-      interview: "Question: 'Are GET requests secure?' Answer: 'GET parameters are sent inside the visible URL query, meaning they remain cached in browser histories. They are NOT safe for sensitive credentials like passwords.'",
-      code: `@GetMapping("/orders/{id}")
-public Order getOrder(@PathVariable("id") int id) {
-    return orderService.fetchOrder(id);
+      category: 'Ordering System (HTTP)',
+      why: "Tells the waiter: 'Only trigger this method when customers request to VIEW something' (e.g. reading a menu card or looking up a profile).",
+      analogy: "<strong>Reading the Menu Card</strong>. You are looking up what dishes are available and checking prices. You are fetching data, but you aren't adding any new food onto the kitchen counters.",
+      interview: "Question: Can GET requests send secret passwords? Answer: No, GET parameters are written openly in the website URL bar, making them unsafe for logins.",
+      code: `@GetMapping("/menu")
+public List<Dish> readMenu() {
+    return menuService.fetchTodayMenu();
 }`
     },
     'postmapping': {
       title: '@PostMapping',
-      category: 'HTTP Requests Mapping',
-      why: "Routes HTTP POST requests containing dynamic JSON body data to backend logic. Typically used for creating new rows or submitting profiles.",
-      analogy: "Placing a brand new food order at the Swiggy checkout register. You fill a basket with food items and submit it (POST) which creates a new transaction entry.",
-      interview: "Question: 'What is the default HTTP status code returned by a successful POST in Spring?' Answer: 'Usually 200 OK, but standard REST guidelines recommend returning 201 Created.'",
-      code: `@PostMapping("/orders/create")
-public String create(@RequestBody Order order) {
-    orderService.save(order);
-    return "Created successfully!";
-}`
-    },
-    'putmapping': {
-      title: '@PutMapping',
-      category: 'HTTP Requests Mapping',
-      why: "Maps HTTP PUT requests onto methods. Typically used for modifying or replacing entire existing entries in the database.",
-      analogy: "Calling Swiggy customer care to completely edit your existing delivery address while the driver is in transit.",
-      interview: "Question: 'What is PUT vs PATCH?' Answer: 'PUT completely replaces/updates the entire resource profile. PATCH performs partial updates on specific fields.'",
-      code: `@PutMapping("/orders/update/{id}")
-public Order update(@PathVariable int id, @RequestBody Order updated) {
-    return orderService.replaceOrder(id, updated);
-}`
-    },
-    'deletemapping': {
-      title: '@DeleteMapping',
-      category: 'HTTP Requests Mapping',
-      why: "Routes HTTP DELETE commands. Removes rows from persistent databases.",
-      analogy: "Cancelling an order completely and removing its card from your active Swiggy dashboard.",
-      interview: "Question: 'Can a DELETE request have a body?' Answer: 'Yes, but standard HTTP structures do not recommend it. It is best to pass identifiers directly in the URL.'",
-      code: `@DeleteMapping("/orders/delete/{id}")
-public String delete(@PathVariable int id) {
-    orderService.remove(id);
-    return "Successfully deleted order #" + id;
+      category: 'Ordering System (HTTP)',
+      why: "Tells the waiter: 'Only trigger this when a customer is SUBMITTING or CREATING something brand new' (e.g. creating an order or posting a photo).",
+      analogy: "<strong>Placing a New Order Slip</strong>. You choose a double cheese burger and submit your checkout (POST), which creates a new order ticket in the kitchen's active queue.",
+      interview: "Question: What code status is best for successful POST requests? Answer: While 200 OK is fine, standard guidelines recommend returning '201 Created'.",
+      code: `@PostMapping("/orders/new")
+public Order cookNewFood(@RequestBody Order orderDetails) {
+    return orderService.startCooking(orderDetails);
 }`
     },
     'pathvariable': {
       title: '@PathVariable',
-      category: 'Parameters Binding',
-      why: "Binds dynamic placeholders inside URL strings (e.g. `/products/{id}`) directly into Java method parameters.",
-      analogy: "Opening a locker. The locker number is written on the locker key itself (path variable). Tying the number directly to the lock code allows entry.",
-      interview: "Question: 'What happens if the variable name doesn't match the path placeholder?' Answer: 'You must declare the exact path name inside path variable parameters: @PathVariable(\"id\") int productId.'",
-      code: `@GetMapping("/users/{username}")
-public User getProfile(@PathVariable("username") String name) {
-    return userService.findByName(name);
+      category: 'Ordering System (HTTP)',
+      why: "Extracts dynamic, changing values straight out of the URL path (like `/orders/{id}`) and delivers them directly into Java method parameters.",
+      analogy: "<strong>Specific Table Numbers</strong>. The waiter looks at the table number written right on your table card. It tells them exactly which specific seat to bring the burger to.",
+      interview: "Question: How do you match path variables? Answer: Make sure the spelling inside the path braces matches the parameter: @PathVariable(\"id\") int orderId.",
+      code: `@GetMapping("/orders/{id}")
+public Order findMyFood(@PathVariable("id") int orderId) {
+    return orderService.getById(orderId);
 }`
     },
     'requestbody': {
       title: '@RequestBody',
-      category: 'Parameters Binding',
-      why: "Captures raw inbound JSON text payloads from the invisible HTTP Request Body and translates them instantly into Java Objects.",
-      analogy: "The cargo loading hold of a delivery truck. Inside the box are raw pieces which the receiver unpacks and maps into internal storage shelves.",
-      interview: "Question: 'What exception is thrown if JSON fields are incorrect?' Answer: 'HttpMessageNotReadableException is thrown if the incoming JSON formats are corrupt.'",
-      code: `@PostMapping("/users/register")
-public User register(@RequestBody User user) {
-    return userService.save(user);
+      category: 'Ordering System (HTTP)',
+      why: "Unpacks the incoming JSON payload card submitted by the customer and automatically converts it into a structured Java Object.",
+      analogy: "<strong>The Food Customization Form</strong>. You write specific choices (e.g. 'extra cheese, no pickles') on a paper slip. The waiter takes the slip and translates it into a checklist the chef can read.",
+      interview: "Question: What parses JSON in Spring? Answer: A built-in tool called 'Jackson' maps JSON strings into Java variables automatically.",
+      code: `@PostMapping("/diner/register")
+public Diner welcomeGuest(@RequestBody Diner details) {
+    return dinerService.save(details);
 }`
     },
     'autowired': {
       title: '@Autowired',
-      category: 'Dependency Injection',
-      why: "Automates Dependency Injection. Instructs Spring's engine to lookup and auto-inject matching registered classes (beans) without using 'new' keywords.",
-      analogy: "The restaurant chef stepping into the kitchen and finding a perfectly forged, sharp knife placed right on their table by the manager.",
-      interview: "Question: 'What is the recommended injection strategy?' Answer: 'Constructor injection is preferred over field injection as it ensures immutable beans and supports testing.'",
+      category: 'Kitchen Staff & Tools',
+      why: "Automates 'Dependency Injection'. Instead of you manually instantiating classes with the 'new' keyword, Spring automatically locates and delivers matching beans into your variables.",
+      analogy: "<strong>The Automatic Utensil Hand-off</strong>. The head chef steps up to the kitchen counter. Before they can even ask, the restaurant manager automatically slides a perfectly sharpened, clean knife right into their hand (@Autowired)!",
+      interview: "Question: What is Dependency Injection? Answer: It means classes do not create their helpers. Spring instantiates and injects helper dependencies automatically, keeping components isolated and easy to test.",
       code: `@RestController
-public class OrderController {
-    private final OrderService orderService;
+public class DinerController {
+    private final DinerService service;
 
-    @Autowired // Auto-injects service bean
-    public OrderController(OrderService os) {
-        this.orderService = os;
+    @Autowired // Spring automatically injects the DinerService!
+    public DinerController(DinerService ds) {
+        this.service = ds;
     }
 }`
     },
     'service': {
       title: '@Service',
-      category: 'Core Service Layer',
-      why: "Registers a class as a Spring Bean holding specialized business algorithms, calculations, and rules.",
-      analogy: "The Head Chef inside the kitchen. The chef does not talk to clients directly. Instead, they process raw food orders and execute recipes.",
-      interview: "Question: 'What is the difference between @Service and @Component?' Answer: '@Service is a specialized stereotype annotation. Underneath it is mapped with @Component, but it makes the architecture self-documenting.'",
+      category: 'Kitchen Staff & Tools',
+      why: "Sticks a 'Chef' label on a Java class, telling Spring: 'Register this class as the core executor of business algorithms and kitchen recipes.'",
+      analogy: "<strong>The Master Chef</strong>. The chef does not talk to guests at the door. Instead, they stand inside the kitchen, reading order tickets and executing recipes to turn raw assets into cooked meals.",
+      interview: "Question: What is @Service under the hood? Answer: It is a specialized form of @Component, used to declare business controllers self-documenting.",
       code: `@Service
-public class OrderService {
-    public void validateOrder(Order o) {
-        // Business logic check...
+public class BurgerService {
+    public void executeSecretRecipe(Burger b) {
+        // Business logic recipes happen here!
     }
 }`
     },
     'repository': {
       title: '@Repository',
-      category: 'Repository DB Layer',
-      why: "Registers database mapping interfaces, executing high-speed SQL statements via JPA/Hibernate automatically.",
-      analogy: "The stock manager in the restaurant basement. When the chef needs items, the manager fetches, updates, or adds crates to the storage racks.",
-      interview: "Question: 'How does @Repository handle transactions?' Answer: 'Spring repository actions are @Transactional by default, automatically reverting database rows if exceptions crash mid-process.'",
+      category: 'Kitchen Staff & Tools',
+      why: "Declares a class as the 'Pantry Clerk', responsible for executing SQL commands to retrieve or save items inside the database fridge.",
+      analogy: "<strong>The Pantry Assistant</strong>. When the chef needs items (like flour or beef), they yell to the assistant. The assistant runs to the fridge (Database), grabs the assets, and hands them to the chef.",
+      interview: "Question: What is the main advantage of @Repository? Answer: It automatically translates database driver failures into general Spring data exceptions.",
       code: `@Repository
 public interface OrderRepository extends JpaRepository<Order, Integer> {
-    // Custom database methods go here...
-}`
-    },
-    'component': {
-      title: '@Component',
-      category: 'Core Service Layer',
-      why: "The core mother annotation. Tells Spring, 'Detect this class during startup scans and register it as an active managed bean.'",
-      analogy: "Any custom appliance inside the kitchen (like an automatic timer or a toaster) that is managed and powered by the restaurant's outlets.",
-      interview: "Question: 'What are the main stereotypes that inherit @Component?' Answer: '@Controller, @Service, and @Repository all inherit @Component.'",
-      code: `@Component
-public class TokenGenerator {
-    public String generateUuid() {
-        return UUID.randomUUID().toString();
-    }
+    // Speaks directly to the MySQL Fridge!
 }`
     }
   };
@@ -732,7 +588,6 @@ public class TokenGenerator {
       const key = btn.getAttribute('data-anno');
       renderAnnotationDetails(key);
       
-      // Update explorations state
       simulationStates.annotationExplored[key] = true;
       updateProgressTelemetry();
     });
@@ -746,18 +601,18 @@ public class TokenGenerator {
 
     txtTitle.innerText = config.title;
     txtCategory.innerText = config.category;
-    txtAnalogy.innerText = config.analogy;
+    txtAnalogy.innerHTML = config.analogy;
     txtWhy.innerText = config.why;
     txtInterview.innerText = config.interview;
     txtCode.innerText = config.code;
   }
 
-  // Load first annotation by default
+  // Load first annotation sticker by default
   renderAnnotationDetails('restcontroller');
 
 
   /* ==========================================
-     4. MODULE 3: JWT SECURITY SANDBOX
+     4. MODULE 3: TICKET SECURITY (JWT)
      ========================================== */
   const btnJwtLogin = document.getElementById('btn-jwt-login');
   const btnJwtTestUnauth = document.getElementById('btn-jwt-test-unauth');
@@ -770,23 +625,19 @@ public class TokenGenerator {
   const jwtNodeClient = document.getElementById('jwt-node-client');
   const jwtNodeServer = document.getElementById('jwt-node-server');
 
-  let generatedToken = '';
-
   btnJwtLogin.addEventListener('click', () => {
     playSystemSound('snd-click');
     
-    const user = iptJwtUser.value || 'mollie_developer';
+    const user = iptJwtUser.value || 'sam_hungry';
     
-    // Header & Payload decoders update
     txtJwtDecodedHeader.innerHTML = JSON.stringify({ "alg": "HS256", "typ": "JWT" }, null, 2);
     txtJwtDecodedPayload.innerHTML = JSON.stringify({
       "sub": user,
-      "exp": 1798530000,
-      "role": "ROLE_PRINCIPAL_DEVELOPER",
-      "scope": "read:dashboard write:db"
+      "role": "VIP_DINER",
+      "wristband_color": "neon_blue",
+      "exp": 1798530000
     }, null, 2);
 
-    // Glowing animations
     const parts = document.querySelectorAll('.jwt-part');
     parts.forEach(p => {
       p.style.animation = 'pulse-amber-glow 1s ease 2';
@@ -799,13 +650,11 @@ public class TokenGenerator {
     playSystemSound('snd-success');
   });
 
-  // Access secured endpoint without token
   btnJwtTestUnauth.addEventListener('click', () => {
     if (btnJwtTestUnauth.disabled) return;
     triggerJwtRequestSimulation(false);
   });
 
-  // Access secured endpoint with token
   btnJwtTestAuth.addEventListener('click', () => {
     if (btnJwtTestAuth.disabled) return;
     triggerJwtRequestSimulation(true);
@@ -815,18 +664,17 @@ public class TokenGenerator {
     btnJwtTestUnauth.disabled = true;
     btnJwtTestAuth.disabled = true;
 
-    // Reset nodes
     jwtNodeClient.className = 'jwt-node';
     jwtNodeServer.className = 'jwt-node';
     jwtSecurityPacket.style.opacity = '1';
 
     if (isAuth) {
-      lblJwtFlowStatus.innerText = 'Transmitting Token in Headers...';
+      lblJwtFlowStatus.innerText = 'Flashing VIP Wristband...';
       jwtSecurityPacket.className = 'jwt-flow-packet anim-forward-ok';
       jwtNodeClient.classList.add('active-success');
 
       setTimeout(() => {
-        lblJwtFlowStatus.innerText = 'JPA Verification Successful!';
+        lblJwtFlowStatus.innerText = 'Gate Stamp Verified: Welcome VIP!';
         jwtNodeServer.classList.add('active-success');
         playSystemSound('snd-success');
         
@@ -835,7 +683,7 @@ public class TokenGenerator {
       }, 1200);
 
     } else {
-      lblJwtFlowStatus.innerText = 'Transmitting Anonymous Call...';
+      lblJwtFlowStatus.innerText = 'Trying to sneak through gate...';
       jwtSecurityPacket.className = 'jwt-flow-packet anim-forward-fail';
       jwtNodeClient.classList.add('active-fail');
 
@@ -856,145 +704,7 @@ public class TokenGenerator {
 
 
   /* ==========================================
-     5. MODULE 4: MICROSERVICES COMMUNICATION MESH
-     ========================================== */
-  const btnMsTrigger = document.getElementById('btn-ms-trigger');
-  const btnMsToggleOutage = document.getElementById('btn-ms-toggle-outage');
-  const lblMsTelemetry = document.getElementById('lbl-ms-telemetry');
-  
-  let isPaymentServiceDown = false;
-
-  btnMsToggleOutage.addEventListener('click', () => {
-    isPaymentServiceDown = !isPaymentServiceDown;
-    playSystemSound('snd-click');
-
-    const nodeA = document.getElementById('ms-node-payment-1');
-    const nodeB = document.getElementById('ms-node-payment-2');
-
-    if (isPaymentServiceDown) {
-      btnMsToggleOutage.innerHTML = '<i class="fa-solid fa-plug"></i> Fix Outage: Payment UP';
-      btnMsToggleOutage.className = 'btn-fire-request status-up mt-1';
-      nodeA.classList.add('node-outage');
-      nodeB.classList.add('node-outage');
-      lblMsTelemetry.innerText = 'Telemetry Alert: Payment node offline!';
-    } else {
-      btnMsToggleOutage.innerHTML = '<i class="fa-solid fa-plug-circle-xmark"></i> Outage: Payment Down';
-      btnMsToggleOutage.className = 'btn-fire-request status-down mt-1';
-      nodeA.classList.remove('node-outage');
-      nodeB.classList.remove('node-outage');
-      lblMsTelemetry.innerText = 'Telemetry: All nodes standard status.';
-    }
-  });
-
-  // Swiggy Order Checkout Microservices Flow simulation
-  btnMsTrigger.addEventListener('click', () => {
-    if (btnMsTrigger.disabled) return;
-    
-    btnMsTrigger.disabled = true;
-    playSystemSound('snd-click');
-
-    // Canvas nodes elements
-    const gateway = document.getElementById('ms-node-gateway');
-    const user = document.getElementById('ms-node-user');
-    const order = document.getElementById('ms-node-order');
-    const eureka = document.getElementById('ms-node-eureka');
-    const payment1 = document.getElementById('ms-node-payment-1');
-    const payment2 = document.getElementById('ms-node-payment-2');
-    const notification = document.getElementById('ms-node-notification');
-
-    const pacA = document.getElementById('ms-packet-a');
-    const pacB = document.getElementById('ms-packet-b');
-
-    // Wipe previous node states
-    const nodes = [gateway, user, order, eureka, payment1, payment2, notification];
-    nodes.forEach(n => n.classList.remove('node-load-hit'));
-
-    // Step 1: Client to API Gateway
-    lblMsTelemetry.innerText = 'Step 1: REST POST received at API Gateway...';
-    gateway.classList.add('node-load-hit');
-    
-    // Step 2: Gateway contacts Eureka Service Registry (Service Discovery)
-    setTimeout(() => {
-      lblMsTelemetry.innerText = 'Step 2: Gateway checks service addresses on Eureka...';
-      eureka.classList.add('node-load-hit');
-      
-      pacA.style.opacity = '1';
-      pacA.className = 'ms-packet-agent success-color';
-      pacA.style.top = '10%';
-      pacA.style.left = '45%';
-    }, 1000);
-
-    // Step 3: Gateway forwards to User Service
-    setTimeout(() => {
-      pacA.style.opacity = '0';
-      eureka.classList.remove('node-load-hit');
-
-      lblMsTelemetry.innerText = 'Step 3: Loading User Account Profile...';
-      user.classList.add('node-load-hit');
-    }, 2000);
-
-    // Step 4: User Service checks out to Order Service
-    setTimeout(() => {
-      user.classList.remove('node-load-hit');
-      lblMsTelemetry.innerText = 'Step 4: Executing Order Creation...';
-      order.classList.add('node-load-hit');
-    }, 3000);
-
-    // Step 5: Order service triggers Payment Service (with Load Balancing logic!)
-    setTimeout(() => {
-      order.classList.remove('node-load-hit');
-      
-      if (isPaymentServiceDown) {
-        // Failure flow! Circuit Breaker triggers
-        lblMsTelemetry.innerText = 'Step 5 ALERT: Payment node down! Circuit Breaker (Resilience4j) triggered!';
-        pacB.style.opacity = '1';
-        pacB.className = 'ms-packet-agent fail-color';
-        pacB.style.top = '48%';
-        pacB.style.left = '75%';
-        
-        playSystemSound('snd-fail');
-      } else {
-        // Normal Flow: Alternate load balancing hit on Payment Node B
-        lblMsTelemetry.innerText = 'Step 5: Load balancer routing to payment instance B...';
-        payment2.classList.add('node-load-hit');
-        
-        pacB.style.opacity = '1';
-        pacB.className = 'ms-packet-agent success-color';
-        pacB.style.top = '58%';
-        pacB.style.left = '75%';
-      }
-    }, 4000);
-
-    // Step 6: Order triggers Notification service
-    setTimeout(() => {
-      pacB.style.opacity = '0';
-      payment1.classList.remove('node-load-hit');
-      payment2.classList.remove('node-load-hit');
-
-      if (isPaymentServiceDown) {
-        lblMsTelemetry.innerText = 'Step 6: Payment failed (Offline Fallback: queued notification sent).';
-      } else {
-        lblMsTelemetry.innerText = 'Step 6: Processing Complete! SMS Invoice delivered.';
-      }
-      
-      notification.classList.add('node-load-hit');
-      playSystemSound('snd-success');
-    }, 5500);
-
-    // Finished
-    setTimeout(() => {
-      nodes.forEach(n => n.classList.remove('node-load-hit'));
-      btnMsTrigger.disabled = false;
-      
-      simulationStates.msTriggered = true;
-      updateProgressTelemetry();
-    }, 7200);
-
-  });
-
-
-  /* ==========================================
-     6. MODULE 5: PERFORMANCE CACHING COMPARISON
+     5. MODULE 4: ACADEMY & FRUIT BOWL CACHE
      ========================================== */
   const btnPerfTestDb = document.getElementById('btn-perf-test-db');
   const btnPerfTestCache = document.getElementById('btn-perf-test-cache');
@@ -1004,24 +714,19 @@ public class TokenGenerator {
   const txtPerfCacheLatency = document.getElementById('txt-perf-cache-latency');
   const lblPerfAnalysis = document.getElementById('lbl-perf-analysis');
 
-  // DevOps pipeline step bindings
-  const pipelineSteps = document.querySelectorAll('.pipeline-step');
-  const lblDevopsExplanation = document.getElementById('lbl-devops-explanation');
-
   btnPerfTestDb.addEventListener('click', () => {
     playSystemSound('snd-click');
     btnPerfTestDb.disabled = true;
 
-    // Simulate high latency Direct Database Select query
-    txtPerfDbLatency.innerText = 'Calculating...';
+    txtPerfDbLatency.innerText = 'Driving...';
     barPerfDb.style.width = '0%';
     
     setTimeout(() => {
-      const randLatency = Math.floor(Math.random() * 150) + 280; // 280-430ms
+      const randLatency = Math.floor(Math.random() * 120) + 240; // 240-360ms
       txtPerfDbLatency.innerText = `${randLatency} ms`;
       barPerfDb.style.width = '95%';
       
-      lblPerfAnalysis.innerHTML = `⚠️ **DB Direct Access Overload**: Spring Boot was forced to map raw JPA interfaces, open direct DB connection threads, scan millions of files on storage, and serialize details. **Server load: High.**`;
+      lblPerfAnalysis.innerHTML = `⚠️ **DB Trip complete (Slow)**: Bypassed the cache. We had to open database connections, scan the physical hard drive tables, parse rows, and package values. **Diner status: Hungry & waiting.**`;
       btnPerfTestDb.disabled = false;
       playSystemSound('snd-fail');
 
@@ -1034,45 +739,24 @@ public class TokenGenerator {
     playSystemSound('snd-click');
     btnPerfTestCache.disabled = true;
 
-    // Simulate direct instant in-memory Redis Cache Hit
-    txtPerfCacheLatency.innerText = 'Calculating...';
+    txtPerfCacheLatency.innerText = 'Grabbing...';
     barPerfCache.style.width = '0%';
     
     setTimeout(() => {
-      const randLatency = Math.floor(Math.random() * 7) + 3; // 3-10ms
+      const randLatency = Math.floor(Math.random() * 6) + 2; // 2-8ms
       txtPerfCacheLatency.innerText = `${randLatency} ms`;
-      barPerfCache.style.width = '8%';
+      barPerfCache.style.width = '10%';
       
-      lblPerfAnalysis.innerHTML = `⚡ **Redis Cache Hit (98% Speedup)**: Spring @Cacheable intercepted requests. Jackson bypassed DB lookups entirely and served the pre-compiled JSON payload straight from RAM. **Server load: Zero.**`;
+      lblPerfAnalysis.innerHTML = `⚡ **Fruit Bowl Grab complete (Instant!)**: Bypassed the database entirely! The data was cached in memory (RAM). Jackson grabbed it instantly in under 10ms. **Diner status: Happily served!**`;
       btnPerfTestCache.disabled = false;
       playSystemSound('snd-success');
     }, 800);
   });
 
-  // DevOps dynamic descriptions
-  const devopsDescriptions = {
-    'local': '**Step 1: Local Host**: The developer sets up standard properties inside `application.properties` and boots Tomcat locally on port 8080. Hot-swapping modules helps inspect edits instantaneously.',
-    'docker': '**Step 2: Docker Container**: A custom `Dockerfile` bundles the compiled `.jar` build package alongside a lightweight OpenJDK Java Runtime Environment. This ensures the app boots identical environments globally.',
-    'cicd': '**Step 3: GitHub Actions CI/CD**: Pushing updates to GitHub launches automated container runner tests. Code quality coverage analysis executes, and build files are packaged.',
-    'aws': '**Step 4: AWS Cloud Deploy**: Containers deploy to Amazon ECS / EC2 cloud networks. Incoming requests are balanced across multi-zone instances for high-availability access.'
-  };
-
-  pipelineSteps.forEach(step => {
-    step.addEventListener('click', () => {
-      pipelineSteps.forEach(s => s.classList.remove('active'));
-      step.classList.add('active');
-
-      const val = step.getAttribute('data-step');
-      lblDevopsExplanation.innerHTML = devopsDescriptions[val];
-      playSystemSound('snd-click');
-    });
-  });
-
 
   /* ==========================================
-     7. MODULE 6: MCQ QUIZ CHALLENGE
+     6. CHECKPOINT QUIZ & FLASHCARDS
      ========================================== */
-  const quizWorkspacePanel = document.getElementById('quiz-workspace-panel');
   const activeQuizBlock = document.getElementById('active-quiz-block');
   const quizCompleteBlock = document.getElementById('quiz-complete-block');
   
@@ -1088,48 +772,48 @@ public class TokenGenerator {
 
   const quizQuestions = [
     {
-      q: "Which Spring Boot annotation combines @Controller and @ResponseBody into one?",
+      q: "In our Restaurant analogy, who represents the '@RestController'?",
       options: [
-        { text: "@RestController", correct: true },
-        { text: "@Service", correct: false },
-        { text: "@Component", correct: false },
-        { text: "@Repository", correct: false }
+        { text: "The Master Chef preparing recipes", correct: false },
+        { text: "The Pantry Clerk fetching ingredients", correct: false },
+        { text: "The Waiter who receives orders and serves JSON meals", correct: true },
+        { text: "The Fridge storing raw vegetables", correct: false }
       ]
     },
     {
-      q: "What is the primary role of the @Autowired annotation?",
+      q: "What is the primary role of the '@Autowired' annotation sticker?",
       options: [
-        { text: "It maps incoming HTTP GET requests", correct: false },
-        { text: "It executes visual JPA database commands", correct: false },
-        { text: "It triggers automatic Dependency Injection on beans", correct: true },
-        { text: "It decrypts JWT stateless signatures", correct: false }
+        { text: "To unlock the REST security gate", correct: false },
+        { text: "To automatically hand utensils/beans to the staff without using 'new'", correct: true },
+        { text: "To delete items from the database fridge", correct: false },
+        { text: "To set table numbers in the URL path", correct: false }
       ]
     },
     {
-      q: "Which HTTP request method should strictly be used to retrieve profile details without modifying records?",
+      q: "Which request type should strictly be mapped using @GetMapping?",
       options: [
-        { text: "POST", correct: false },
-        { text: "DELETE", correct: false },
-        { text: "PUT", correct: false },
-        { text: "GET", correct: true }
+        { text: "Adding a new order slip to the queue", correct: false },
+        { text: "Viewing the menu items without changing any server data", correct: true },
+        { text: "Removing cancelled orders from the kitchen list", correct: false },
+        { text: "Replacing an entire meal profile", correct: false }
       ]
     },
     {
-      q: "Stateless REST APIs transmit authentication tokens (like JWT) primarily where?",
+      q: "Stateless REST APIs secure their gates by issuing what?",
       options: [
-        { text: "Inside the local MySQL row metadata", correct: false },
-        { text: "Inside the HTTP Authorization Header", correct: true },
-        { text: "Inside the @PathVariable URL dynamic parameters", correct: false },
-        { text: "Inside the Spring Boot terminal logs", correct: false }
+        { text: "A list of IP directories in text logs", correct: false },
+        { text: "A physical locker key in the database", correct: false },
+        { text: "A stamped paper VIP wristband (JWT) containing token claims", correct: true },
+        { text: "An automatic knife tool from Autowired", correct: false }
       ]
     },
     {
-      q: "What is Eureka in a microservices architecture?",
+      q: "What is the 'Fruit Bowl on the Kitchen Table' in backend engineering?",
       options: [
-        { text: "A high-speed Redis in-memory cache system", correct: false },
-        { text: "A service discovery registry tracking active node addresses", correct: true },
-        { text: "A security filter generating JWT tokens", correct: false },
-        { text: "A Docker deployment compiler", correct: false }
+        { text: "A physical server fridge (Database)", correct: false },
+        { text: "High-speed in-memory Caching (like Redis)", correct: true },
+        { text: "A constructor dependency scanner", correct: false },
+        { text: "The front desk security guard", correct: false }
       ]
     }
   ];
@@ -1161,7 +845,6 @@ public class TokenGenerator {
     if (hasAnswered) return;
     
     hasAnswered = true;
-    
     const options = listQuizAnswers.querySelectorAll('.answer-option');
     options.forEach(opt => opt.disabled = true);
 
@@ -1171,7 +854,6 @@ public class TokenGenerator {
       txtQuizScore.innerText = score;
       playSystemSound('snd-success');
       
-      // Update global states
       simulationStates.quizScore = score;
       updateProgressTelemetry();
     } else {
@@ -1206,11 +888,11 @@ public class TokenGenerator {
 
     lblFinalScore.innerText = `${score} / ${quizQuestions.length}`;
     
-    let badge = 'No Badge';
+    let badge = 'Novice Helper';
     if (score >= 4) {
-      badge = 'Enterprise Architect 👑';
+      badge = 'Diner Master Chef 👑';
     } else if (score >= 2) {
-      badge = 'Associate Engineer 🏅';
+      badge = 'Kitchen Manager 🏅';
     }
 
     lblCompletionBadge.innerText = badge;
@@ -1227,19 +909,22 @@ public class TokenGenerator {
     loadQuestion(0);
   });
 
-  // Load first question
   loadQuestion(0);
 
-
-  /* ==========================================
-     8. TECHNICAL INTERVIEW FLASHCARDS
-     ========================================== */
+  // Flashcards toggle
   const flashcards = document.querySelectorAll('.flashcard');
   flashcards.forEach(card => {
     card.addEventListener('click', () => {
       card.classList.toggle('flipped');
       playSystemSound('snd-click');
     });
+  });
+
+  // Light/Dark Theme Switcher
+  const btnTheme = document.getElementById('btn-theme-switcher');
+  btnTheme.addEventListener('click', () => {
+    document.body.classList.toggle('light-mode');
+    playSystemSound('snd-click');
   });
 
 });
