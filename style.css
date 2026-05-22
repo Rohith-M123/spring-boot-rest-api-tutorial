@@ -505,7 +505,8 @@ body {
 }
 
 .playground-card {
-  flex: 0.8;
+  height: 235px; /* Adjustable height via dragging */
+  flex: none;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -724,10 +725,40 @@ body {
   color: var(--text-muted);
 }
 
+/* Sleek Vertical Resizer Divider Handle styling */
+.console-resizer {
+  height: 10px;
+  cursor: ns-resize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2px 0;
+  border-radius: 4px;
+  background: transparent;
+  transition: var(--transition-smooth);
+  user-select: none;
+  z-index: 10;
+}
+.console-resizer:hover {
+  background: rgba(139, 92, 246, 0.1);
+}
+.resizer-line {
+  width: 32px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.15);
+  transition: var(--transition-smooth);
+}
+.console-resizer:hover .resizer-line {
+  background: var(--accent-purple);
+  width: 50px;
+  box-shadow: 0 0 8px var(--accent-purple);
+}
+
 /* Terminal logs console styling (highlighted in centre) */
 .ide-console {
-  margin-top: 8px;
-  flex: 1.2;
+  margin-top: 0; /* Spacing handled by resizer bar */
+  flex: 1;
   display: flex;
   flex-direction: column;
   overflow: hidden;
