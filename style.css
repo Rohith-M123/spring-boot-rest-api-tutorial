@@ -48,7 +48,7 @@ body {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background-color: var(--bg-primary);
   color: var(--text-main);
-  overflow-x: hidden;
+  overflow: hidden;
   height: 100vh;
   display: flex;
   transition: background-color 0.4s ease;
@@ -106,7 +106,7 @@ body {
   border: 1px solid var(--border-glass);
   border-radius: 16px;
   box-shadow: var(--glass-shadow);
-  padding: 20px;
+  padding: 14px;
   transition: var(--transition-smooth);
 }
 .glass-card:hover {
@@ -118,13 +118,14 @@ body {
   display: flex;
   width: 100%;
   height: 100vh;
-  padding: 16px;
-  gap: 16px;
+  padding: 12px;
+  gap: 12px;
+  overflow: hidden;
 }
 
 /* SIDEBAR CONTROLLER */
 .lab-sidebar {
-  width: 280px;
+  width: 250px;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
@@ -133,14 +134,14 @@ body {
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border-glass);
   border-radius: 16px;
-  padding: 20px;
+  padding: 14px;
 }
 
 .sidebar-brand {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 .brand-logo {
   width: 44px;
@@ -300,15 +301,15 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
-  overflow-y: auto;
+  overflow: hidden;
 }
 
 .viewport-header {
   background: var(--bg-secondary);
   border: 1px solid var(--border-glass);
   border-radius: 16px;
-  padding: 16px 20px;
-  margin-bottom: 16px;
+  padding: 10px 16px;
+  margin-bottom: 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -344,15 +345,19 @@ body {
 .tab-contents-wrapper {
   flex: 1;
   position: relative;
+  min-height: 0;
+  overflow: hidden;
 }
 .tab-pane {
   display: none;
   width: 100%;
   height: 100%;
   animation: fadeInTab 0.3s ease;
+  overflow: hidden;
 }
 .tab-pane.active {
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 
 @keyframes fadeInTab {
@@ -366,8 +371,26 @@ body {
 .api-lab-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 12px;
   height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.api-control-panel, .api-telemetry-panel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+.api-control-panel .card-body, .api-telemetry-panel .card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+  gap: 10px;
 }
 
 .playground-presets {
@@ -474,15 +497,20 @@ body {
 
 /* Database simulator table */
 .database-simulator-box {
-  margin-top: 16px;
+  margin-top: 8px;
   border-top: 1px solid var(--border-glass);
-  padding-top: 16px;
+  padding-top: 8px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
 }
 .db-header {
   display: flex;
   justify-content: space-between;
-  font-size: 0.75rem;
-  margin-bottom: 8px;
+  font-size: 0.7rem;
+  margin-bottom: 4px;
   color: var(--text-muted);
 }
 .db-status-badge {
@@ -493,23 +521,25 @@ body {
   background: rgba(0, 0, 0, 0.2);
   border: 1px solid var(--border-glass);
   border-radius: 10px;
-  overflow: hidden;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
 }
 .db-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   text-align: left;
 }
 .db-table th {
   background: rgba(255, 255, 255, 0.02);
-  padding: 8px 12px;
+  padding: 6px 10px;
   color: var(--text-muted);
   font-weight: 600;
   border-bottom: 1px solid var(--border-glass);
 }
 .db-table td {
-  padding: 8px 12px;
+  padding: 6px 10px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.03);
 }
 .db-status {
@@ -544,11 +574,30 @@ body {
 }
 
 /* Architecture visualizer layers */
+.architecture-diagram {
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+.architecture-diagram .card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 0;
+  overflow: hidden;
+  gap: 6px;
+}
 .layers-grid {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  margin-bottom: 16px;
+  gap: 2px;
+  margin-bottom: 6px;
+  flex: 1;
+  min-height: 0;
+  justify-content: space-between;
 }
 .arch-layer {
   display: flex;
@@ -556,7 +605,7 @@ body {
   background: rgba(255, 255, 255, 0.015);
   border: 1px solid var(--border-glass);
   border-radius: 8px;
-  padding: 6px 12px;
+  padding: 4px 10px;
   position: relative;
   cursor: pointer;
   transition: var(--transition-smooth);
@@ -565,19 +614,24 @@ body {
   background: rgba(255, 255, 255, 0.04);
 }
 .arch-layer.active-glow {
-  background: rgba(99, 102, 241, 0.1);
-  border-color: var(--accent-indigo);
-  box-shadow: 0 0 15px rgba(99, 102, 241, 0.2);
+  background: rgba(139, 92, 246, 0.15);
+  border-color: var(--accent-purple);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+  animation: activeLayerGlow 0.8s infinite alternate ease-in-out;
+}
+@keyframes activeLayerGlow {
+  0% { box-shadow: 0 0 8px rgba(139, 92, 246, 0.3), inset 0 0 4px rgba(139, 92, 246, 0.1); border-color: rgba(139, 92, 246, 0.5); }
+  100% { box-shadow: 0 0 22px rgba(139, 92, 246, 0.8), inset 0 0 10px rgba(139, 92, 246, 0.3); border-color: var(--accent-purple); }
 }
 .layer-badge {
   width: 90px;
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   font-weight: 700;
   color: var(--text-muted);
 }
 .layer-icon {
-  width: 32px;
-  height: 32px;
+  width: 26px;
+  height: 26px;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 6px;
   display: flex;
@@ -585,26 +639,27 @@ body {
   justify-content: center;
   color: var(--accent-indigo);
   margin-right: 12px;
+  font-size: 0.8rem;
 }
 .layer-title {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 700;
 }
 .arch-layer.active-glow .layer-icon {
-  background: var(--accent-indigo);
+  background: var(--accent-purple);
   color: white;
 }
 
 /* Connection Wires & Flowing Packets */
 .arch-wire {
-  height: 12px;
+  height: 8px;
   position: relative;
   margin-left: 110px;
 }
 .arch-wire::before {
   content: '';
   position: absolute;
-  left: 16px;
+  left: 13px;
   top: 0;
   bottom: 0;
   width: 2px;
@@ -612,7 +667,7 @@ body {
 }
 .arch-packet {
   position: absolute;
-  left: 14px;
+  left: 11px;
   width: 6px;
   height: 6px;
   border-radius: 50%;
@@ -621,12 +676,12 @@ body {
 }
 
 .arch-packet.anim-forward {
-  animation: moveDown 0.85s linear forwards;
+  animation: moveDown 0.8s linear forwards;
 }
 
 @keyframes moveDown {
   0% { transform: translateY(-4px); opacity: 1; }
-  100% { transform: translateY(14px); opacity: 1; }
+  100% { transform: translateY(10px); opacity: 1; }
 }
 
 .architecture-annotation-box {
@@ -641,11 +696,16 @@ body {
 
 /* Terminal logs console styling */
 .ide-console {
-  margin-top: 16px;
+  margin-top: 8px;
+  flex: 0.8;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
 }
 .console-header {
   background: rgba(0, 0, 0, 0.4);
-  padding: 10px 14px;
+  padding: 6px 12px;
   border-bottom: 1px solid var(--border-glass);
   display: flex;
   align-items: center;
@@ -667,7 +727,7 @@ body {
 .dot-green { background-color: var(--accent-success); }
 
 .console-title {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-family: 'Fira Code', monospace;
   color: var(--text-muted);
   display: flex;
@@ -678,7 +738,7 @@ body {
   background: rgba(255, 255, 255, 0.08);
   padding: 2px 6px;
   border-radius: 4px;
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   font-weight: 700;
 }
 .console-telemetry-badge.ok { background: rgba(16, 185, 129, 0.2); color: var(--accent-success); }
@@ -686,16 +746,17 @@ body {
 
 .console-body-wrapper {
   background: #060913;
-  height: 160px;
+  flex: 1;
   overflow-y: auto;
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
-  padding: 12px;
+  padding: 8px 12px;
+  min-height: 0;
 }
 .console-text-container {
   font-family: 'Fira Code', monospace;
-  font-size: 0.7rem;
-  line-height: 1.45;
+  font-size: 0.65rem;
+  line-height: 1.4;
   color: #c7d2fe;
   white-space: pre-wrap;
 }
@@ -708,41 +769,59 @@ body {
    ========================================== */
 .annotation-lab-layout {
   display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 16px;
+  grid-template-columns: 280px 1fr;
+  gap: 12px;
   height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+.annotation-selection-panel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+.annotation-selection-panel .card-body {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 .annotation-selection-panel h3 {
-  font-size: 0.95rem;
-  margin-bottom: 8px;
+  font-size: 0.9rem;
+  margin-bottom: 6px;
 }
 .annotation-selection-panel p {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: var(--text-muted);
-  line-height: 1.4;
-  margin-bottom: 16px;
+  line-height: 1.35;
+  margin-bottom: 12px;
 }
 .matrix-group {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 .matrix-group h4 {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   letter-spacing: 0.5px;
 }
 .annotation-btn {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid var(--border-glass);
   border-radius: 8px;
-  padding: 8px 12px;
-  font-size: 0.8rem;
+  padding: 6px 10px;
+  font-size: 0.75rem;
   font-family: 'Fira Code', monospace;
   color: var(--text-muted);
   cursor: pointer;
   transition: var(--transition-smooth);
-  margin-bottom: 6px;
+  margin-bottom: 4px;
+  display: block;
+  text-align: left;
 }
 .annotation-btn.active, .annotation-btn:hover {
   background: rgba(139, 92, 246, 0.1);
@@ -751,9 +830,19 @@ body {
 }
 
 .annotation-workspace {
-  min-height: 380px;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+.annotation-workspace .card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  min-height: 0;
+  gap: 10px;
 }
 .workspace-placeholder {
   display: flex;
@@ -838,8 +927,25 @@ body {
 .jwt-sandbox-layout {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
-  gap: 16px;
+  gap: 12px;
   height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+.jwt-control-box, .jwt-visualizer-box {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+.jwt-control-box .card-body, .jwt-visualizer-box .card-body {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  gap: 8px;
 }
 
 .input-group {
@@ -1084,8 +1190,25 @@ body {
    ========================================== */
 .academy-layout {
   display: flex;
-  gap: 16px;
+  gap: 12px;
   height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+.quiz-desk-box, .interview-prep-box {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+.quiz-desk-box .card-body, .interview-prep-box .card-body {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  gap: 10px;
 }
 
 .cache-action-triggers {

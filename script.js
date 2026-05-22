@@ -171,19 +171,66 @@ document.addEventListener('DOMContentLoaded', () => {
   const lblTerminalStatus = document.getElementById('lbl-terminal-status');
   const lblArchitectureExplanation = document.getElementById('lbl-architecture-explanation');
 
+  // Interactive console coloring helper
+  function formatTerminalLog(logLine) {
+    return logLine
+      .replace(/(INFO\s+)/g, '<span style="color: var(--accent-indigo); font-weight: 700;">$1</span>')
+      .replace(/(DEBUG)/g, '<span style="color: var(--accent-purple); font-weight: 700;">$1</span>')
+      .replace(/(WARN|ERROR)/g, '<span style="color: var(--accent-error); font-weight: 700;">$1</span>')
+      .replace(/(\[.+?\])/g, '<span style="color: var(--text-muted); font-weight: 500;">$1</span>');
+  }
+
   const playgroundPresets = {
     'insta-feed': {
       url: 'https://api.instagram.com/v1/feed?userId=2059',
       method: 'GET',
       dbAction: 'SELECT',
       dbTargetRow: 101,
+      layers: [
+        {
+          badge: "1. Insta Client",
+          icon: "fa-solid fa-mobile-screen-button",
+          title: "Instagram App",
+          info: "Your Instagram app triggers a GET request to look at travel_dave's photo feed."
+        },
+        {
+          badge: "2. Gateway",
+          icon: "fa-solid fa-user-shield",
+          title: "Session Guard",
+          info: "Security Guard checks if your Instagram user login token matches an active feed session."
+        },
+        {
+          badge: "3. Controller",
+          icon: "fa-solid fa-leaf",
+          title: "FeedController",
+          info: "The RestController waiter receives the request URL and extracts 'userId=2059'."
+        },
+        {
+          badge: "4. Service",
+          icon: "fa-solid fa-kitchen-set",
+          title: "FeedService",
+          info: "The Master Chef runs dynamic sorting recipes, applying filters and likes algorithm checks."
+        },
+        {
+          badge: "5. Repository",
+          icon: "fa-solid fa-cart-shopping",
+          title: "FeedRepository",
+          info: "The Pantry helper constructs SQL queries to locate raw post columns inside disk sectors."
+        },
+        {
+          badge: "6. Database",
+          icon: "fa-solid fa-database",
+          title: "Instagram DB Fridge",
+          info: "The permanent MySQL Database fridge where raw rows of posts, captions, and like counters live."
+        }
+      ],
       logs: [
         'INFO  [DispatcherServlet] GET "/v1/feed" matched to InstagramController (Waiter greeted client & read the Instagram order request)',
-        'DEBUG [SecurityFilter] API Key verified successfully (Security Guard checked user VIP card)',
-        'INFO  [RestController] Extracting parameters: userId=2059 (Waiter writes down your table number)',
-        'INFO  [InstagramService] Fetching posts feed calculations (Chef starts executing the Instagram feed recipe)',
-        'DEBUG [InstagramRepository] SQL Executed: SELECT * FROM posts p WHERE p.user_id = 2059 (Pantry Assistant grabs raw ingredients from fridge)',
-        'INFO  [JacksonSerializer] Mapping Java to JSON string response (Waiter plates the meal in clean bowls)'
+        'DEBUG [SecurityFilter] API Key verified successfully (Session Guard checked user session keys)',
+        'INFO  [RestController] Extracting parameters: userId=2059 (FeedController extracts your account table)',
+        'INFO  [FeedService] Sorting posts feed calculations (Chef runs Instagram timeline ranking recipes)',
+        'DEBUG [FeedRepository] SQL Executed: SELECT * FROM posts p WHERE p.user_id = 2059 (Pantry Assistant grabs raw ingredients from Instagram DB Fridge)',
+        'INFO  [JacksonSerializer] Mapping Java to JSON string response (Waiter plates the photo feed in clean bowls)'
       ],
       json: `{
   "userId": 2059,
@@ -210,12 +257,50 @@ document.addEventListener('DOMContentLoaded', () => {
       body: `{\n  "itemName": "Double Cheese Burger",\n  "price": 9.99,\n  "customer": "sarah_k"\n}`,
       dbAction: 'INSERT',
       dbTargetRow: 104,
+      layers: [
+        {
+          badge: "1. Swiggy App",
+          icon: "fa-solid fa-pizza-slice",
+          title: "Swiggy App UI",
+          info: "You select a Double Cheese Burger and press Order. This submits a POST request."
+        },
+        {
+          badge: "2. Gateway",
+          icon: "fa-solid fa-shield-halved",
+          title: "Swiggy Gateway",
+          info: "Checks if your delivery location is active and verifies your payment authentication."
+        },
+        {
+          badge: "3. Controller",
+          icon: "fa-solid fa-leaf",
+          title: "OrderController",
+          info: "The Waiter RestController reads the JSON body payload containing details: Sarah_k + Burger + $9.99."
+        },
+        {
+          badge: "4. Service",
+          icon: "fa-solid fa-kitchen-set",
+          title: "OrderService",
+          info: "The Chef checks restaurant availability, calculates tax, and prepares coupon algorithms."
+        },
+        {
+          badge: "5. Repository",
+          icon: "fa-solid fa-cart-shopping",
+          title: "OrderRepository",
+          info: "The Pantry assistant is ordered to save this transaction ticket permanently inside the fridge."
+        },
+        {
+          badge: "6. Database",
+          icon: "fa-solid fa-database",
+          title: "Swiggy Postgres Fridge",
+          info: "The secure SQL Database fridge containing columns of current preparing foods & payment receipts."
+        }
+      ],
       logs: [
-        'INFO  [DispatcherServlet] POST "/v1/orders/create" matched to SwiggyOrderController (Waiter reads order card)',
-        'DEBUG [JacksonParser] Parsing request body JSON into Order object (Waiter translates customer details for chef)',
-        'INFO  [OrderService] Cooking logic started. Checking price minimums (Chef checks food expiration dates)',
-        'DEBUG [OrderRepository] SQL Executed: INSERT INTO orders (customer, item, price) VALUES ("sarah_k", "Burger", 9.99) (Pantry Assistant adds a new bag to fridge storage)',
-        'INFO  [NotificationService] SMS Invoice triggered asynchronously (Diner rings cash register bell)'
+        'INFO  [DispatcherServlet] POST "/v1/orders/create" matched to SwiggyOrderController (Waiter reads your hot burger order card)',
+        'DEBUG [JacksonParser] Parsing request body JSON into Order object (OrderController waiter translates customer details for chef)',
+        'INFO  [OrderService] Cooking logic started. Checking price minimums (Chef checks food expiration dates & delivery calculations)',
+        'DEBUG [OrderRepository] SQL Executed: INSERT INTO orders (customer, item, price) VALUES ("sarah_k", "Burger", 9.99) (Pantry assistant adds order ticket to Swiggy Postgres Fridge)',
+        'INFO  [NotificationService] SMS Invoice triggered asynchronously (Diner rings active register cash bells)'
       ],
       json: `{
   "orderId": 104,
@@ -231,11 +316,51 @@ document.addEventListener('DOMContentLoaded', () => {
       method: 'GET',
       dbAction: 'SELECT',
       dbTargetRow: 103,
+      layers: [
+        {
+          badge: "1. Amazon Client",
+          icon: "fa-solid fa-magnifying-glass",
+          title: "Amazon Searchbox",
+          info: "You search 'mouse' on Amazon, firing a GET request to query product catalogs."
+        },
+        {
+          badge: "2. Gateway",
+          icon: "fa-solid fa-user-shield",
+          title: "AWS API Shield",
+          info: "AWS Firewall checks incoming search rate-limits and blocks robot denial-of-service spam."
+        },
+        {
+          badge: "3. Controller",
+          icon: "fa-solid fa-leaf",
+          title: "SearchController",
+          info: "The Waiter RestController intercepts the GET parameters and captures query='mouse'."
+        },
+        {
+          badge: "4. Service",
+          icon: "fa-solid fa-kitchen-set",
+          title: "ProductService",
+          info: "The Chef ranks search relevance, filters out-of-stock items, and fetches current discounts."
+        },
+        {
+          badge: "5. Repository",
+          icon: "fa-solid fa-cart-shopping",
+          title: "ProductRepository",
+          info: "The Pantry helper finds catalog items matching wildcard strings like '%mouse%'."
+        },
+        {
+          badge: "6. Database",
+          icon: "fa-solid fa-database",
+          title: "Amazon Oracle Fridge",
+          info: "The enormous product catalog Database fridge where active product descriptions and stock counts live."
+        }
+      ],
       logs: [
-        'INFO  [DispatcherServlet] GET "/v1/products/search" matched to ProductController (Waiter routes product request)',
-        'INFO  [ProductService] Searching warehouse catalog directories (Chef pulls catalog maps)',
-        'DEBUG [ProductRepository] SQL Executed: SELECT * FROM products WHERE name LIKE "%mouse%" (Pantry Assistant searches shelves)',
-        'INFO  [JacksonSerializer] Binders packaging details array (Waiter plates items neatly)'
+        'INFO  [DispatcherServlet] GET "/v1/products/search" matched to ProductController (Waiter routes product request details to warehouse)',
+        'DEBUG [SecurityFilter] Verified rate-limits successfully (AWS API Shield checks search box limits)',
+        'INFO  [RestController] Extracted search queries: query="mouse" (SearchController captures dynamic parameters)',
+        'INFO  [ProductService] Searching catalog directories (Chef sorts active stocks and warehouse recommendations)',
+        'DEBUG [ProductRepository] SQL Executed: SELECT * FROM products WHERE name LIKE "%mouse%" (Pantry assistant finds mouse boxes in Amazon Oracle Fridge)',
+        'INFO  [JacksonSerializer] Binders packaging details array (Waiter plates search items neatly)'
       ],
       json: `{
   "query": "mouse",
@@ -258,11 +383,50 @@ document.addEventListener('DOMContentLoaded', () => {
       body: `{\n  "to": "+12345",\n  "message": "Hi, let's learn Spring Boot! 🚀"\n}`,
       dbAction: 'INSERT',
       dbTargetRow: 105,
+      layers: [
+        {
+          badge: "1. WA Messenger",
+          icon: "fa-solid fa-comment-sms",
+          title: "WhatsApp chat UI",
+          info: "You hit send on a chat text message. This fires a POST payload request."
+        },
+        {
+          badge: "2. Gateway",
+          icon: "fa-solid fa-lock",
+          title: "Encryption Gate",
+          info: "Verifies secure TLS socket certificates and scans for user accounts authentication."
+        },
+        {
+          badge: "3. Controller",
+          icon: "fa-solid fa-leaf",
+          title: "MessageController",
+          info: "The Waiter RestController extracts JSON parameters, routing the text body directly to delivery systems."
+        },
+        {
+          badge: "4. Service",
+          icon: "fa-solid fa-kitchen-set",
+          title: "MessageService",
+          info: "The Chef runs network carrier validation routes, checks phone formats, and packages encryption keys."
+        },
+        {
+          badge: "5. Repository",
+          icon: "fa-solid fa-cart-shopping",
+          title: "MessageRepository",
+          info: "The Pantry assistant is asked to write text records securely into the cluster storage."
+        },
+        {
+          badge: "6. Database",
+          icon: "fa-solid fa-database",
+          title: "WA Mongo DB Fridge",
+          info: "The scalable, unstructured Document Database fridge keeping encrypted message details safe."
+        }
+      ],
       logs: [
-        'INFO  [DispatcherServlet] POST "/v1/messages/send" matched to WhatsappController (Waiter captures message)',
-        'INFO  [MessageService] Validating phone carrier routing keys (Chef checks delivery routes)',
-        'DEBUG [MessageRepository] SQL Executed: INSERT INTO messages (recipient, text) VALUES ("+12345", "Hi...") (Pantry Assistant stores logs in box)',
-        'INFO  [PushGateway] Transmitting packet to cellular nodes (Diner hands plate to courier)'
+        'INFO  [DispatcherServlet] POST "/v1/messages/send" matched to WhatsappController (Waiter captures your message request)',
+        'DEBUG [SecurityFilter] Secure TLS socket certificates verified (Encryption Gate checks login statuses)',
+        'INFO  [MessageService] Validating phone carrier routing keys (Chef checks delivery corridors and cellular routes)',
+        'DEBUG [MessageRepository] SQL Executed: INSERT INTO messages (recipient, text) VALUES ("+12345", "Hi...") (Pantry assistant stores message logs in WA Mongo DB Fridge)',
+        'INFO  [PushGateway] Transmitting packet to cellular nodes (Diner hands delivery plate to network carrier)'
       ],
       json: `{
   "messageId": "MSG-774920",
@@ -289,9 +453,29 @@ INFO  [main] Server fully ready! Standing by for customer orders...
 `;
 
   function printStartupBanner() {
-    terminalLogOutput.innerHTML = springBootStartupText;
+    const coloredLines = springBootStartupText.split('\n').map(line => formatTerminalLog(line)).join('\n');
+    terminalLogOutput.innerHTML = coloredLines;
   }
   printStartupBanner();
+
+  function updateArchitectureView(presetKey) {
+    const config = playgroundPresets[presetKey];
+    if (!config || !config.layers) return;
+    
+    for (let index = 0; index < 6; index++) {
+      const layerConfig = config.layers[index];
+      
+      const badgeEl = document.getElementById(`lbl-layer-badge-${index + 1}`);
+      const iconEl = document.getElementById(`lbl-layer-icon-${index + 1}`);
+      const titleEl = document.getElementById(`lbl-layer-title-${index + 1}`);
+      const layerEl = document.getElementById(`layer-${['client', 'gateway', 'controller', 'service', 'repository', 'database'][index]}`);
+      
+      if (badgeEl) badgeEl.innerText = layerConfig.badge;
+      if (iconEl) iconEl.innerHTML = `<i class="${layerConfig.icon}"></i>`;
+      if (titleEl) titleEl.innerText = layerConfig.title;
+      if (layerEl) layerEl.setAttribute('data-layer-info', layerConfig.info);
+    }
+  }
 
   btnPresetList.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -315,7 +499,12 @@ INFO  [main] Server fully ready! Standing by for customer orders...
       postmanBodyWrapper.classList.add('hidden');
       txtPostmanBody.value = '';
     }
+
+    updateArchitectureView(presetKey);
   }
+
+  // Load first preset visuals on boot
+  loadPreset('insta-feed');
 
   // Handle manual dropdown switches
   selHttpMethod.addEventListener('change', () => {
@@ -347,7 +536,7 @@ INFO  [main] Server fully ready! Standing by for customer orders...
     const presetKey = document.querySelector('.btn-preset.active')?.getAttribute('data-preset') || 'insta-feed';
     const config = playgroundPresets[presetKey];
 
-    terminalLogOutput.innerHTML = `[DINER ORDER PLACED] ---> Waiter starting request pipeline...\n`;
+    terminalLogOutput.innerHTML = formatTerminalLog(`INFO  [Tomcat] Tomcat/8080 captured incoming REST payload: ${config.method} ${config.url}\nINFO  [DispatcherServlet] Initializing Spring Diner pipeline travel sequence...\n`);
     lblTerminalStatus.innerText = 'WAITING';
     lblTerminalStatus.className = 'console-telemetry-badge';
 
@@ -363,7 +552,7 @@ INFO  [main] Server fully ready! Standing by for customer orders...
         targetLayer.classList.add('active-glow');
         
         if (config.logs[step]) {
-          terminalLogOutput.innerHTML += `${config.logs[step]}\n`;
+          terminalLogOutput.innerHTML += `${formatTerminalLog(config.logs[step])}\n`;
           terminalLogOutput.scrollTop = terminalLogOutput.scrollHeight;
         }
 
@@ -382,7 +571,7 @@ INFO  [main] Server fully ready! Standing by for customer orders...
         setTimeout(animateStep, stepDuration);
       } else {
         // Return food back to user!
-        terminalLogOutput.innerHTML += `INFO  [DispatcherServlet] Returning response to Customer with status: ${config.responseStatus}\n`;
+        terminalLogOutput.innerHTML += `${formatTerminalLog(`INFO  [DispatcherServlet] Returning client response payload with status: ${config.responseStatus}`)}\n`;
         layers.forEach(ly => ly.classList.remove('active-glow'));
         
         typeWriteConsoleJson(config.json, () => {
@@ -448,7 +637,7 @@ INFO  [main] Server fully ready! Standing by for customer orders...
   function typeWriteConsoleJson(text, callback) {
     const lines = text.split('\n');
     let idx = 0;
-    terminalLogOutput.innerHTML += `\n[MEAL SERVED (RESPONSE JSON)]:\n`;
+    terminalLogOutput.innerHTML += `\n<span style="color: var(--accent-success); font-weight: 700;">[RESPONSE PAYLOAD BODY (JSON)]</span>:\n`;
 
     const interval = setInterval(() => {
       if (idx < lines.length) {
