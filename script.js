@@ -177,7 +177,8 @@ document.addEventListener('DOMContentLoaded', () => {
       .replace(/(INFO\s+)/g, '<span style="color: var(--accent-indigo); font-weight: 700;">$1</span>')
       .replace(/(DEBUG)/g, '<span style="color: var(--accent-purple); font-weight: 700;">$1</span>')
       .replace(/(WARN|ERROR)/g, '<span style="color: var(--accent-error); font-weight: 700;">$1</span>')
-      .replace(/(\[.+?\])/g, '<span style="color: var(--text-muted); font-weight: 500;">$1</span>');
+      .replace(/(\[.+?\])/g, '<span style="color: var(--text-muted); font-weight: 500;">$1</span>')
+      .replace(/\((.+?)\)/g, '(<span style="color: var(--accent-amber); font-weight: 600; font-style: italic;">$1</span>)');
   }
 
   const playgroundPresets = {
@@ -536,7 +537,9 @@ INFO  [main] Server fully ready! Standing by for customer orders...
     const presetKey = document.querySelector('.btn-preset.active')?.getAttribute('data-preset') || 'insta-feed';
     const config = playgroundPresets[presetKey];
 
-    terminalLogOutput.innerHTML = formatTerminalLog(`INFO  [Tomcat] Tomcat/8080 captured incoming REST payload: ${config.method} ${config.url}\nINFO  [DispatcherServlet] Initializing Spring Diner pipeline travel sequence...\n`);
+    const startLog1 = formatTerminalLog(`INFO  [Tomcat] Tomcat/8080 captured incoming REST payload: ${config.method} ${config.url}`);
+    const startLog2 = formatTerminalLog(`INFO  [DispatcherServlet] Initializing Spring Diner pipeline travel sequence...`);
+    terminalLogOutput.innerHTML = `<span class="log-step-badge tomcat">TOMCAT</span>${startLog1}\n<span class="log-step-badge dispatcher">DISPATCH</span>${startLog2}\n`;
     lblTerminalStatus.innerText = 'WAITING';
     lblTerminalStatus.className = 'console-telemetry-badge';
 
@@ -552,7 +555,8 @@ INFO  [main] Server fully ready! Standing by for customer orders...
         targetLayer.classList.add('active-glow');
         
         if (config.logs[step]) {
-          terminalLogOutput.innerHTML += `${formatTerminalLog(config.logs[step])}\n`;
+          const badgeHTML = `<span class="log-step-badge">STAGE ${step + 1}</span>`;
+          terminalLogOutput.innerHTML += `${badgeHTML}${formatTerminalLog(config.logs[step])}\n`;
           terminalLogOutput.scrollTop = terminalLogOutput.scrollHeight;
         }
 
@@ -571,7 +575,8 @@ INFO  [main] Server fully ready! Standing by for customer orders...
         setTimeout(animateStep, stepDuration);
       } else {
         // Return food back to user!
-        terminalLogOutput.innerHTML += `${formatTerminalLog(`INFO  [DispatcherServlet] Returning client response payload with status: ${config.responseStatus}`)}\n`;
+        const returnLog = formatTerminalLog(`INFO  [DispatcherServlet] Returning client response payload with status: ${config.responseStatus}`);
+        terminalLogOutput.innerHTML += `<span class="log-step-badge response">RETURN</span>${returnLog}\n`;
         layers.forEach(ly => ly.classList.remove('active-glow'));
         
         typeWriteConsoleJson(config.json, () => {
