@@ -174,11 +174,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Interactive console coloring helper
   function formatTerminalLog(logLine) {
     return logLine
-      .replace(/(INFO\s+)/g, '<span style="color: var(--accent-indigo); font-weight: 700;">$1</span>')
-      .replace(/(DEBUG)/g, '<span style="color: var(--accent-purple); font-weight: 700;">$1</span>')
-      .replace(/(WARN|ERROR)/g, '<span style="color: var(--accent-error); font-weight: 700;">$1</span>')
-      .replace(/(\[.+?\])/g, '<span style="color: var(--text-muted); font-weight: 500;">$1</span>')
-      .replace(/\((.+?)\)/g, '(<span style="color: var(--accent-amber); font-weight: 600; font-style: italic;">$1</span>)');
+      .replace(/(INFO\s+)/g, '<span class="log-info">$1</span>')
+      .replace(/(DEBUG)/g, '<span class="log-debug">$1</span>')
+      .replace(/(WARN|ERROR)/g, '<span class="log-warn">$1</span>')
+      .replace(/(\[.+?\])/g, '<span class="log-component">$1</span>')
+      .replace(/\((.+?)\)/g, '(<span class="log-translation">$1</span>)');
   }
 
   const playgroundPresets = {
@@ -226,12 +226,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       ],
       logs: [
-        'INFO  [DispatcherServlet] GET "/v1/feed" matched to InstagramController (Waiter greeted client & read the Instagram order request)',
-        'DEBUG [SecurityFilter] API Key verified successfully (Session Guard checked user session keys)',
-        'INFO  [RestController] Extracting parameters: userId=2059 (FeedController extracts your account table)',
-        'INFO  [FeedService] Sorting posts feed calculations (Chef runs Instagram timeline ranking recipes)',
-        'DEBUG [FeedRepository] SQL Executed: SELECT * FROM posts p WHERE p.user_id = 2059 (Pantry Assistant grabs raw ingredients from Instagram DB Fridge)',
-        'INFO  [JacksonSerializer] Mapping Java to JSON string response (Waiter plates the photo feed in clean bowls)'
+        'INFO  [DispatcherServlet] GET "/v1/feed" matched to InstagramController (Waiter takes your photo feed order request)',
+        'DEBUG [SecurityFilter] API Key verified successfully (Session Guard verifies user is logged in)',
+        'INFO  [RestController] Extracted parameter: userId=2059 (Waiter writes down your account profile details)',
+        'INFO  [FeedService] Calculating post rankings (Chef prepares dynamic sorting algorithms)',
+        'DEBUG [FeedRepository] SELECT * FROM posts WHERE user_id = 2059 (Pantry helper fetches ingredients from database fridge)',
+        'INFO  [JacksonSerializer] Serializing response JSON (Waiter plates the photo feed in clean bowls)'
       ],
       json: `{
   "userId": 2059,
@@ -297,11 +297,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       ],
       logs: [
-        'INFO  [DispatcherServlet] POST "/v1/orders/create" matched to SwiggyOrderController (Waiter reads your hot burger order card)',
-        'DEBUG [JacksonParser] Parsing request body JSON into Order object (OrderController waiter translates customer details for chef)',
-        'INFO  [OrderService] Cooking logic started. Checking price minimums (Chef checks food expiration dates & delivery calculations)',
-        'DEBUG [OrderRepository] SQL Executed: INSERT INTO orders (customer, item, price) VALUES ("sarah_k", "Burger", 9.99) (Pantry assistant adds order ticket to Swiggy Postgres Fridge)',
-        'INFO  [NotificationService] SMS Invoice triggered asynchronously (Diner rings active register cash bells)'
+        'INFO  [DispatcherServlet] POST "/v1/orders/create" matched to SwiggyOrderController (Waiter takes the new burger order)',
+        'DEBUG [JacksonParser] Parsing order JSON body (Waiter translates customer choices for the kitchen)',
+        'INFO  [OrderService] Cooking logic started. Checking price minimums (Chef checks ingredients & delivery calculations)',
+        'DEBUG [OrderRepository] INSERT INTO orders (customer, item, price) VALUES ("sarah_k", "Burger", 9.99) (Pantry helper saves order slip in database fridge)',
+        'INFO  [NotificationService] Sending SMS confirmation (Diner register rings and prints the bill receipt)'
       ],
       json: `{
   "orderId": 104,
@@ -356,12 +356,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       ],
       logs: [
-        'INFO  [DispatcherServlet] GET "/v1/products/search" matched to ProductController (Waiter routes product request details to warehouse)',
-        'DEBUG [SecurityFilter] Verified rate-limits successfully (AWS API Shield checks search box limits)',
-        'INFO  [RestController] Extracted search queries: query="mouse" (SearchController captures dynamic parameters)',
-        'INFO  [ProductService] Searching catalog directories (Chef sorts active stocks and warehouse recommendations)',
-        'DEBUG [ProductRepository] SQL Executed: SELECT * FROM products WHERE name LIKE "%mouse%" (Pantry assistant finds mouse boxes in Amazon Oracle Fridge)',
-        'INFO  [JacksonSerializer] Binders packaging details array (Waiter plates search items neatly)'
+        'INFO  [DispatcherServlet] GET "/v1/products/search" matched to ProductController (Waiter routes product request to inventory desk)',
+        'DEBUG [SecurityFilter] Rate-limit checks passed (AWS Shield blocks bots from spamming search)',
+        'INFO  [RestController] Extracted query="mouse" (Waiter writes down search item parameters)',
+        'INFO  [ProductService] Checking product stock catalogs (Chef matches search queries with inventory stock)',
+        'DEBUG [ProductRepository] SELECT * FROM products WHERE name LIKE "%mouse%" (Pantry helper retrieves mouse details from database fridge)',
+        'INFO  [JacksonSerializer] Packaging response array to JSON (Waiter wraps search results neatly for delivery)'
       ],
       json: `{
   "query": "mouse",
@@ -423,11 +423,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       ],
       logs: [
-        'INFO  [DispatcherServlet] POST "/v1/messages/send" matched to WhatsappController (Waiter captures your message request)',
-        'DEBUG [SecurityFilter] Secure TLS socket certificates verified (Encryption Gate checks login statuses)',
-        'INFO  [MessageService] Validating phone carrier routing keys (Chef checks delivery corridors and cellular routes)',
-        'DEBUG [MessageRepository] SQL Executed: INSERT INTO messages (recipient, text) VALUES ("+12345", "Hi...") (Pantry assistant stores message logs in WA Mongo DB Fridge)',
-        'INFO  [PushGateway] Transmitting packet to cellular nodes (Diner hands delivery plate to network carrier)'
+        'INFO  [DispatcherServlet] POST "/v1/messages/send" matched to WhatsappController (Waiter captures incoming message request)',
+        'DEBUG [SecurityFilter] TLS socket authorized (Gatekeeper verifies encrypted connection stamps)',
+        'INFO  [MessageService] Validating cellular route paths (Chef selects standard delivery routes)',
+        'DEBUG [MessageRepository] INSERT INTO messages (recipient, text) VALUES ("+12345", "Hi...") (Pantry helper secures message history in database fridge)',
+        'INFO  [PushGateway] Transmitting push notification packet (Waiter hands delivery plate to cellular network)'
       ],
       json: `{
   "messageId": "MSG-774920",
