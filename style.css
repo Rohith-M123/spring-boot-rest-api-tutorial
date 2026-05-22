@@ -497,14 +497,44 @@ body {
 
 /* Database simulator table */
 .database-simulator-box {
-  margin-top: 8px;
-  border-top: 1px solid var(--border-glass);
-  padding-top: 8px;
   flex: 1;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   min-height: 0;
+}
+
+.playground-card {
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+.playground-card .card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+  gap: 10px;
+}
+
+.database-simulator-card {
+  margin-top: 8px;
+  flex: 0.8;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+.database-simulator-card .card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+  gap: 10px;
 }
 .db-header {
   display: flex;
@@ -694,7 +724,7 @@ body {
   color: var(--text-muted);
 }
 
-/* Terminal logs console styling */
+/* Terminal logs console styling (highlighted in centre) */
 .ide-console {
   margin-top: 8px;
   flex: 0.8;
@@ -702,6 +732,13 @@ body {
   flex-direction: column;
   overflow: hidden;
   min-height: 0;
+  border: 1px solid rgba(139, 92, 246, 0.35); /* Elegant glowing violet border */
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.12); /* Cyberpunk ambient shadow highlight */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.ide-console:hover {
+  border-color: rgba(139, 92, 246, 0.55);
+  box-shadow: 0 0 25px rgba(139, 92, 246, 0.22);
 }
 .console-header {
   background: rgba(0, 0, 0, 0.4);

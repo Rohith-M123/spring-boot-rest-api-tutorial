@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Spring Boot REST API Simplified Diner Simulator. Learn backend concepts through real-world restaurant analogies.">
-  <title>Spring Boot Diner Lab | Interactive Beginner Platform</title>
+  <title>Spring | Interactive Spring Boot Lab</title>
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,10 +28,10 @@
     <aside class="lab-sidebar">
       <div class="sidebar-brand">
         <div class="brand-logo">
-          <i class="fa-solid fa-utensils"></i>
+          <i class="fa-solid fa-leaf"></i>
         </div>
         <div class="brand-info">
-          <h2>Spring Diner</h2>
+          <h2>Spring</h2>
           <span>Beginner Lab v1.0</span>
         </div>
       </div>
@@ -130,90 +130,67 @@
         <section class="tab-pane active" id="tab-api-lab">
           <div class="api-lab-grid">
             
-            <!-- Column 1: Postman Menu Selector & Pantry Database -->
-            <div class="api-control-panel glass-card">
-              <div class="card-header">
-                <h3><i class="fa-solid fa-bell"></i> Step 1: Place an Order (Diner Playground)</h3>
-              </div>
-              <div class="card-body">
-                <!-- Sandbox Preset Quicklinks -->
-                <div class="playground-presets">
-                  <span>Choose a Customer Request Scenario:</span>
-                  <div class="preset-buttons">
-                    <button class="btn-preset active" data-preset="insta-feed">📷 Instagram Feed (GET)</button>
-                    <button class="btn-preset" data-preset="swiggy-order">🍔 Swiggy Burger (POST)</button>
-                    <button class="btn-preset" data-preset="amazon-search">📦 Amazon Search (GET)</button>
-                    <button class="btn-preset" data-preset="whatsapp-send">💬 WhatsApp Send (POST)</button>
-                  </div>
+            <!-- Column 1: Postman Menu Selector & Spring Boot Logs -->
+            <div class="api-control-panel">
+              
+              <!-- Playground Card -->
+              <div class="playground-card glass-card">
+                <div class="card-header">
+                  <h3><i class="fa-solid fa-bell"></i> Step 1: Place an Order (Diner Playground)</h3>
                 </div>
-
-                <!-- URL Bar -->
-                <div class="postman-bar">
-                  <select id="sel-http-method" class="postman-select">
-                    <option value="GET">GET (Fetch Data)</option>
-                    <option value="POST">POST (Submit Data)</option>
-                  </select>
-                  <input type="text" id="ipt-postman-url" value="https://api.instagram.com/v1/feed?userId=2059" class="postman-input" placeholder="Enter API URL...">
-                  <button id="btn-postman-send" class="postman-send-btn">
-                    <i class="fa-solid fa-paper-plane"></i> Send Request
-                  </button>
-                </div>
-
-                <!-- Request Body (For POST) -->
-                <div class="postman-payload-box hidden" id="postman-body-wrapper">
-                  <div class="payload-tab-header">
-                    <span>What information are you sending? (Request Body JSON)</span>
+                <div class="card-body">
+                  <!-- Sandbox Preset Quicklinks -->
+                  <div class="playground-presets">
+                    <span>Choose a Customer Request Scenario:</span>
+                    <div class="preset-buttons">
+                      <button class="btn-preset active" data-preset="insta-feed">📷 Instagram Feed (GET)</button>
+                      <button class="btn-preset" data-preset="swiggy-order">🍔 Swiggy Burger (POST)</button>
+                      <button class="btn-preset" data-preset="amazon-search">📦 Amazon Search (GET)</button>
+                      <button class="btn-preset" data-preset="whatsapp-send">💬 WhatsApp Send (POST)</button>
+                    </div>
                   </div>
-                  <textarea id="txt-postman-body" class="postman-textarea" placeholder="{...}"></textarea>
-                </div>
 
-                <!-- Database Grid -->
-                <div class="database-simulator-box">
-                  <div class="db-header">
-                    <span><i class="fa-solid fa-database"></i> Live Pantry Database: <code>restaurant_records</code></span>
-                    <span class="db-status-badge" id="db-action-status">Standby</span>
+                  <!-- URL Bar -->
+                  <div class="postman-bar">
+                    <select id="sel-http-method" class="postman-select">
+                      <option value="GET">GET (Fetch Data)</option>
+                      <option value="POST">POST (Submit Data)</option>
+                    </select>
+                    <input type="text" id="ipt-postman-url" value="https://api.instagram.com/v1/feed?userId=2059" class="postman-input" placeholder="Enter API URL...">
+                    <button id="btn-postman-send" class="postman-send-btn">
+                      <i class="fa-solid fa-paper-plane"></i> Send Request
+                    </button>
                   </div>
-                  <div class="db-table-wrapper">
-                    <table class="db-table" id="db-visual-table">
-                      <thead>
-                        <tr>
-                          <th>Order ID</th>
-                          <th>Customer</th>
-                          <th>Item Name</th>
-                          <th>Price ($)</th>
-                          <th>Kitchen Status</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr data-row-id="101">
-                          <td>101</td>
-                          <td>dave_travels</td>
-                          <td>📷 Instagram Post Feed</td>
-                          <td>$0.00</td>
-                          <td><span class="db-status success">SERVED</span></td>
-                        </tr>
-                        <tr data-row-id="102">
-                          <td>102</td>
-                          <td>sarah_k</td>
-                          <td>🍔 Double Cheese Burger</td>
-                          <td>$9.99</td>
-                          <td><span class="db-status success">SERVED</span></td>
-                        </tr>
-                        <tr data-row-id="103">
-                          <td>103</td>
-                          <td>mollie_dev</td>
-                          <td>📦 Wireless Mouse</td>
-                          <td>$45.00</td>
-                          <td><span class="db-status warning">PREPARING</span></td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+                  <!-- Request Body (For POST) -->
+                  <div class="postman-payload-box hidden" id="postman-body-wrapper">
+                    <div class="payload-tab-header">
+                      <span>What information are you sending? (Request Body JSON)</span>
+                    </div>
+                    <textarea id="txt-postman-body" class="postman-textarea" placeholder="{...}"></textarea>
                   </div>
                 </div>
               </div>
+
+              <!-- Terminal Console Logs (swapped here and highlighted) -->
+              <div class="ide-console glass-card">
+                <div class="console-header">
+                  <div class="header-dots">
+                    <span class="dot-red"></span>
+                    <span class="dot-yellow"></span>
+                    <span class="dot-green"></span>
+                  </div>
+                  <span class="console-title"><i class="fa-solid fa-terminal"></i> Spring Boot Logs & Diner Translations</span>
+                  <div class="console-telemetry-badge" id="lbl-terminal-status">200 OK</div>
+                </div>
+                <div class="console-body-wrapper">
+                  <pre class="console-text-container" id="terminal-log-output"></pre>
+                </div>
+              </div>
+
             </div>
 
-            <!-- Column 2: Visual Pipeline & Logs -->
+            <!-- Column 2: Visual Pipeline & Live Pantry Database -->
             <div class="api-telemetry-panel">
               
               <!-- 6-Layer Architecture Visualizer -->
@@ -288,19 +265,49 @@
                 </div>
               </div>
 
-              <!-- Terminal Terminal Console Logs -->
-              <div class="ide-console glass-card">
-                <div class="console-header">
-                  <div class="header-dots">
-                    <span class="dot-red"></span>
-                    <span class="dot-yellow"></span>
-                    <span class="dot-green"></span>
-                  </div>
-                  <span class="console-title"><i class="fa-solid fa-terminal"></i> Spring Boot Logs & Diner Translations</span>
-                  <div class="console-telemetry-badge" id="lbl-terminal-status">200 OK</div>
+              <!-- Database Simulator Card (swapped here) -->
+              <div class="database-simulator-card glass-card">
+                <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                  <h3><i class="fa-solid fa-database"></i> Step 3: Live Pantry Database</h3>
+                  <span class="db-status-badge" id="db-action-status" style="font-size: 0.65rem; font-family: 'Fira Code', monospace; color: var(--accent-purple); font-weight: 700;">STANDBY</span>
                 </div>
-                <div class="console-body-wrapper">
-                  <pre class="console-text-container" id="terminal-log-output"></pre>
+                <div class="card-body">
+                  <div class="db-table-wrapper">
+                    <table class="db-table" id="db-visual-table">
+                      <thead>
+                        <tr>
+                          <th>Order ID</th>
+                          <th>Customer</th>
+                          <th>Item Name</th>
+                          <th>Price ($)</th>
+                          <th>Kitchen Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr data-row-id="101">
+                          <td>101</td>
+                          <td>dave_travels</td>
+                          <td>📷 Instagram Post Feed</td>
+                          <td>$0.00</td>
+                          <td><span class="db-status success">SERVED</span></td>
+                        </tr>
+                        <tr data-row-id="102">
+                          <td>102</td>
+                          <td>sarah_k</td>
+                          <td>🍔 Double Cheese Burger</td>
+                          <td>$9.99</td>
+                          <td><span class="db-status success">SERVED</span></td>
+                        </tr>
+                        <tr data-row-id="103">
+                          <td>103</td>
+                          <td>mollie_dev</td>
+                          <td>📦 Wireless Mouse</td>
+                          <td>$45.00</td>
+                          <td><span class="db-status warning">PREPARING</span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
 
